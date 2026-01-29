@@ -1,0 +1,4 @@
+﻿sv_small_nations_buff = {
+    add = root.global_country_ranking
+    divide = 10
+}

@@ -4,7 +4,11 @@ on_character_creation = {
 		balance_generals_on_action
 	}
 }
-
+on_monthly_pulse_country = {
+	on_actions = {
+    	PDXRP_small_nations_buff 
+    }
+}
 balance_generals_on_action = {
 	effect = {
 		if = {
@@ -29,6 +33,21 @@ balance_generals_on_action = {
 			}
 			add_trait = basic_naval_commander		
 
+		}
+	}
+}
+PDXRP_small_nations_buff= {
+	effect = {
+		remove_modifier = modifier_PDXRP_small_nations_buff
+		if = {
+			limit = {
+				global_country_ranking > 10
+				NOT = {C:CHI ?= this}
+			}
+			add_modifier = {
+				name = modifier_PDXRP_small_nations_buff
+				multiplier = sv_small_nations_buff
+			}
 		}
 	}
 }

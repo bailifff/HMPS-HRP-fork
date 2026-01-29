@@ -1,10 +1,11 @@
 ﻿l_english:
  modifier_russian_wastness: "Russian Wastness"
  total_war_decision: "Declare a State of #R Total#! War"
- total_war_decision_desc: "I ask you: Do you want total war?! Do you want it, if necessary, more total and radical than anything that we can yet today even conceive?!"
+ total_war_decision_desc: "Hatred of the invading enemy is the most sacred and humane feeling. But it is born with such a pain of heart and torment of the soul that God forbid anyone to experience it a second time."
  stop_total_war_decision: "Declare an End to the State of #R Total#! War"
  stop_total_war_decision_desc: "Only the dead have seen an end to war."
  modifier_total_war: "State of Total War"
  modifier_total_war_demobilization: "Demobilization after Great War"
  modifier_total_war_movement_surge: "Total War Unrest"
  modifier_total_war_mobilization: "Total War Mobilization"
+ modifier_PDXRP_small_nations_buff: "im just a smol bean"

@@ -27,3 +27,11 @@ modifier_total_war_mobilization = {
 	country_radicals_from_legitimacy_mult = 0.1
 	country_loyalists_from_legitimacy_mult = 0.4
 }
+
+modifier_PDXRP_small_nations_buff = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	state_conscription_rate_mult = 0.05
+	country_military_tech_spread_mult = 0.05
+	battle_defense_owned_province_mult = 0.02
+	building_training_rate_mult = 0.1
+}

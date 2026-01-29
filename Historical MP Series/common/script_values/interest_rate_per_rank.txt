@@ -4,4 +4,5 @@
     divide = 15
     multiply = -0.10
     add = 0.10
+    divide = 2.5
 }
