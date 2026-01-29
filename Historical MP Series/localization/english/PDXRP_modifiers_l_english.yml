@@ -1,0 +1,10 @@
+﻿l_english:
+ modifier_russian_wastness: "Russian Wastness"
+ total_war_decision: "Declare a State of #R Total#! War"
+ total_war_decision_desc: "I ask you: Do you want total war?! Do you want it, if necessary, more total and radical than anything that we can yet today even conceive?!"
+ stop_total_war_decision: "Declare an End to the State of #R Total#! War"
+ stop_total_war_decision_desc: "Only the dead have seen an end to war."
+ modifier_total_war: "State of Total War"
+ modifier_total_war_demobilization: "Demobilization after Great War"
+ modifier_total_war_movement_surge: "Total War Unrest"
+ modifier_total_war_mobilization: "Total War Mobilization"

@@ -1,0 +1,29 @@
+modifier_russian_wastness = {
+	icon = gfx/interface/icons/building_icons/wheat_farm.dds
+	state_birth_rate_mult = 0.07
+	state_education_access_add = -0.1
+}
+
+modifier_total_war = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	country_military_goods_cost_mult = -0.25
+	state_expected_sol_mult = 0.40
+	country_radicals_from_legitimacy_mult = 0.3
+	country_war_exhaustion_casualties_mult = -0.5
+}
+modifier_total_war_movement_surge = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	political_movement_pop_attraction_mult = 1
+	political_movement_radicalism_add  = 0.25
+}
+modifier_total_war_demobilization = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
+	state_expected_sol_mult = 0.80
+	country_radicals_from_legitimacy_mult = 0.8
+}
+modifier_total_war_mobilization = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	state_expected_sol_mult = 0.15
+	country_radicals_from_legitimacy_mult = 0.1
+	country_loyalists_from_legitimacy_mult = 0.4
+}

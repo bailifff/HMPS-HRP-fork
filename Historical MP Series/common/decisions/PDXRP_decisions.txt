@@ -1,0 +1,65 @@
+total_war_decision = {
+	is_shown = {
+		is_player =yes
+		NOT = {has_modifier = modifier_total_war}
+	}
+
+	possible = {
+		has_technology_researched = trench_works
+		is_at_war = yes
+		NOT = {has_modifier = modifier_total_war_demobilization}
+	}
+
+	when_taken = {
+
+		add_modifier = {
+			name = modifier_total_war
+		}
+		every_political_movement = {
+			limit = { 
+				OR = {
+					is_political_movement_type = movement_socialist
+					is_political_movement_type = movement_radical
+				}
+			}
+			add_modifier = {
+				name = modifier_total_war_movement_surge
+				years = 5
+				is_decaying = yes
+			}
+		}
+		add_modifier = {
+			name = modifier_total_war_mobilization
+			months = 15
+			is_decaying = yes
+		}
+	}
+
+	ai_chance = {
+		value = 0
+	}
+}
+
+stop_total_war_decision = {
+	is_shown = {
+		has_modifier = modifier_total_war
+	}
+	possible = {
+		has_modifier = modifier_total_war
+		OR = {
+			is_at_war = no
+			NOT = {has_modifier = modifier_total_war_mobilization}
+		}
+	}
+	when_taken = {
+		remove_modifier = modifier_total_war
+		add_modifier = {
+			name = modifier_total_war_demobilization
+			years = 1
+			is_decaying = yes
+		}
+	}
+	ai_chance = {
+		value = 0
+	}
+}
