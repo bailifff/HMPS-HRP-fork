@@ -41,6 +41,7 @@ total_war_decision = {
 }
 
 stop_total_war_decision = {
+	
 	is_shown = {
 		has_modifier = modifier_total_war
 	}
@@ -58,7 +59,11 @@ stop_total_war_decision = {
 			years = 1
 			is_decaying = yes
 		}
+		add_radicals = {
+			value = -0.1
+		}
 	}
+	
 	ai_chance = {
 		value = 0
 	}

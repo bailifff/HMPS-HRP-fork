@@ -1,0 +1,34 @@
+﻿
+on_character_creation = {
+	on_actions = {
+		balance_generals_on_action
+	}
+}
+
+balance_generals_on_action = {
+	effect = {
+		if = {
+			limit = {
+				has_role = general
+				AND = {
+					NOT = {has_trait = basic_offensive_planner}
+					NOT = {has_trait = basic_defensive_strategist}
+					NOT = {has_trait = basic_artillery_commander}
+				}
+			}
+			random_list = {
+				40 = {add_trait = basic_offensive_planner}
+				50 = {add_trait = basic_defensive_strategist}
+				10 = {add_trait = basic_artillery_commander}
+			}
+		}
+	   else_if = {
+			limit = {
+				has_role = admiral
+				NOT = {has_trait = basic_naval_commander}
+			}
+			add_trait = basic_naval_commander		
+
+		}
+	}
+}
