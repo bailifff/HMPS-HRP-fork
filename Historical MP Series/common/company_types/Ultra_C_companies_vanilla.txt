@@ -1,0 +1,747 @@
+﻿# Africa
+
+INJECT:company_suez_company = {
+	prosperity_modifier = {
+		state_trade_advantage_mult = -0.15
+		country_tax_income_add = -40000
+	}
+}
+
+#Americas
+
+INJECT:company_fundidora_monterrey = {
+	prosperity_modifier = {
+		building_iron_mine_throughput_add = -0.05
+	}
+}
+
+INJECT:company_el_aguila = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.075
+	}
+}
+
+INJECT:company_caribbean_petroleum = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.05
+	}
+}
+
+INJECT:company_bunge_born = {
+	prosperity_modifier = {
+		building_tooling_workshop_throughput_add = -0.05
+	}
+}
+
+INJECT:company_la_rosada = {
+	prosperity_modifier = {
+		building_iron_mine_throughput_add = -0.05
+	}
+}
+
+INJECT:company_kablin = {
+	prosperity_modifier = {
+		building_tooling_workshop_throughput_add = -0.05
+	}
+}
+
+INJECT:company_panama_company = {
+	prosperity_modifier = {
+		state_trade_advantage_mult = -0.15
+		country_tax_income_add = -40000
+	}
+}
+
+#Asia
+
+INJECT:company_east_india_company = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.1
+	}
+}
+
+
+INJECT:company_ottoman_tobacco_regie = {
+	prosperity_modifier = {
+		country_production_tech_spread_mult = -0.05
+	}
+}
+
+INJECT:company_allatini_mills = {
+	prosperity_modifier = {
+		building_food_industry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_sunhwaguk = {
+	prosperity_modifier = {
+		country_tech_spread_mult = -0.05
+	}
+}
+
+INJECT:company_nam_dinh = {
+	prosperity_modifier = {
+		country_tech_spread_mult = -0.05
+	}
+}
+
+INJECT:company_imperial_tobacco = {
+	prosperity_modifier = {
+		country_tech_spread_mult = -0.1
+	}
+}
+
+INJECT:company_william_sandford = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.075
+	}
+}
+
+INJECT:company_b_grimm = {
+	prosperity_modifier = {
+		building_food_industry_throughput_add = -0.05
+	}
+}
+
+# Austria-Hungary
+
+INJECT:company_mav = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+INJECT:company_galician_carpathian_oil = {
+	prosperity_modifier = {
+		building_tooling_workshop_throughput_add = -0.05
+	}
+}
+
+INJECT:company_oevg = {
+	prosperity_modifier = {
+		building_munition_plant_throughput_add = -0.05
+	}
+}
+
+# China
+
+INJECT:company_kaiping_mining = {
+	prosperity_modifier = {
+		country_tech_spread_mult = -0.05
+	}
+}
+
+INJECT:company_hanyang_arsenal = {
+	prosperity_modifier = {
+		unit_combat_unit_type_shrapnel_artillery_offense_mult = -0.1
+	}
+}
+
+INJECT:company_foochow_arsenal = {
+	prosperity_modifier = {
+		building_port_throughput_add = -0.05
+	}
+}
+
+# cots
+
+INJECT:company_sao_paulo_railway = {
+	prosperity_modifier = {
+		building_coffee_plantation_throughput_add = -0.075
+		state_trade_capacity_mult = -0.05
+	}
+}
+
+INJECT:company_estaleiro_maua = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.05
+		building_steel_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_fundicao_ipanema = {
+	prosperity_modifier = {
+		building_arms_industry_throughput_add = -0.05
+	}
+}
+
+# Europe
+
+INJECT:company_fundicao_ipanema = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basileiades = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.1
+	}
+}
+
+INJECT:company_kouppas = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+INJECT:company_ericsson = {
+	prosperity_modifier = {
+		country_weekly_innovation_mult = -0.05
+		state_education_access_wealth_add = -0.0025
+	}
+}
+
+INJECT:company_lkab = {
+	prosperity_modifier = {
+		building_iron_mine_throughput_add = -0.1
+	}
+}
+
+INJECT:company_aker_mek = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.075
+	}
+}
+
+INJECT:company_nokia = {
+	prosperity_modifier = {
+		building_electrics_industry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_ursus = {
+	prosperity_modifier = {
+		building_rye_farm_throughput_add = -0.1
+	}
+}
+
+INJECT:company_lilpop = {
+	prosperity_modifier = {
+		building_motor_industry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_duro_y_compania = {
+	prosperity_modifier = {
+		building_arms_industry_throughput_add = -0.05
+		building_artillery_foundry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_espana_industrial = {
+	prosperity_modifier = {
+		country_weekly_innovation_mult = -0.075
+	}
+}
+
+INJECT:company_chr_hansens = {
+	prosperity_modifier = {
+		building_livestock_ranch_throughput_add = -0.05
+		building_fishing_wharf_throughput_add = -0.05
+	}
+}
+
+INJECT:company_ap_moller = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.1
+	}
+}
+
+INJECT:company_cfr = {
+	prosperity_modifier = {
+		state_trade_capacity_mult = -0.075
+	}
+}
+
+INJECT:company_romanian_star = {
+	prosperity_modifier = {
+		building_group_bg_oil_extraction_throughput_add = -0.05
+	}
+}
+
+#France
+
+INJECT:company_dmc = {
+	prosperity_modifier = {
+		state_assimilation_mult = -0.05
+	}
+}
+
+INJECT:company_mines_anzin = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+#Germany
+
+INJECT:company_krupp = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+INJECT:company_siemens_and_halske = {
+	prosperity_modifier = {
+		building_power_plant_throughput_add = -0.075
+	}
+}
+
+INJECT:company_basf = {
+	prosperity_modifier = {
+		country_weekly_innovation_mult = -0.05
+	}
+}
+
+# Britain
+
+INJECT:company_j_p_coats = {
+	prosperity_modifier = {
+		building_textile_mill_throughput_add = -0.075
+	}
+}
+
+INJECT:company_john_brown = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.05
+	}
+}
+
+INJECT:company_bolckow_vaughan = {
+	prosperity_modifier = {
+		building_shipyard_throughput_add = -0.05
+		building_military_shipyard_throughput_add = -0.05
+	}
+}
+
+# ip2
+
+INJECT:company_bengal_coal_company = {
+	prosperity_modifier = {
+		building_iron_mine_throughput_add = -0.05
+	}
+}
+
+INJECT:company_bombay_dyeing_company = {
+	prosperity_modifier = {
+		building_dye_plantation_throughput_add  = -0.1
+	}
+}
+
+INJECT:company_bombay_burmah_trading_corporation = {
+	prosperity_modifier = {
+		building_tea_plantation_throughput_add = -0.05
+		building_coffee_plantation_throughput_add = -0.05
+	}
+}
+
+INJECT:company_madura_mills = {
+	prosperity_modifier = {
+		building_textile_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_assam_company = {
+	prosperity_modifier = {
+		building_tea_plantation_throughput_add = -0.1
+	}
+}
+
+INJECT:company_wadia_shipbuilders = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.05
+	}
+}
+
+INJECT:company_steel_brothers = {
+	prosperity_modifier = {
+		building_group_bg_logging_throughput_add = -0.1
+	}
+}
+
+INJECT:company_ralli_brothers = {
+	prosperity_modifier = {
+		building_sulfur_mine_throughput_add = -0.05
+		building_textile_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_ralli_brothers = {
+	prosperity_modifier = {
+		building_sulfur_mine_throughput_add = -0.05
+		building_textile_mill_throughput_add = -0.05
+	}
+}
+
+# ip3
+
+INJECT:company_mate_gavrilovic = {
+	prosperity_modifier = {
+		building_livestock_ranch_throughput_add = -0.05
+	}
+}
+
+INJECT:company_klanicko_drustvo = {
+	prosperity_modifier = {
+		building_livestock_ranch_throughput_add = -0.05
+	}
+}
+
+INJECT:company_jakub_klein = {
+	prosperity_modifier = {
+		building_paper_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_elso_budapesti_gozmalom = {
+	prosperity_modifier = {
+		building_wheat_farm_throughput_add = -0.075
+	}
+}
+
+INJECT:company_witkowitzer_bergbau_und_huttengewerkschaft = {
+	prosperity_modifier = {
+		building_power_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_oesterreichisch_alpine_montangesellschaft = {
+	prosperity_modifier = {
+		building_coal_mine_throughput_add = -0.05
+	}
+}
+
+INJECT:company_getzner_mutter = {
+	prosperity_modifier = {
+		building_synthetics_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_erste_brunner = {
+	prosperity_modifier = {
+		building_textile_mill_throughput_add = -0.05
+		building_power_plant_throughput_add = -0.05
+	}
+}
+
+# ip4
+
+INJECT:company_secn = {
+	prosperity_modifier = {
+		country_military_tech_spread_mult = -0.05
+	}
+}
+
+INJECT:company_rodriguez_arguelles_y_cia = {
+	prosperity_modifier = {
+		country_society_tech_spread_mult = -0.05
+	}
+}
+
+INJECT:company_office_cherifien_des_phosphates = {
+	prosperity_modifier = {
+		building_group_bg_agriculture_throughput_add = -0.05
+	}
+}
+
+INJECT:company_uniao_fabril = {
+	prosperity_modifier = {
+		country_production_tech_research_speed_mult = -0.05
+	}
+}
+
+INJECT:company_bacardi = {
+	prosperity_modifier = {
+		building_art_academy_throughput_add = -0.05
+	}
+}
+
+# Italy
+
+INJECT:company_ilva = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+# Japan
+
+INJECT:company_mitsui = {
+	prosperity_modifier = {
+		building_iron_mine_throughput_add = -0.05
+	}
+}
+
+INJECT:company_mantetsu = {
+	prosperity_modifier = {
+		building_wheat_farm_throughput_add = -0.075
+	}
+}
+
+INJECT:company_mitsubishi = {
+	prosperity_modifier = {
+		building_automotive_industry_throughput_add = -0.05
+	}
+}
+
+# mp1
+
+INJECT:company_compania_sansinena_de_carnes_congeladas = {
+	prosperity_modifier = {
+		state_trade_advantage_mult = -0.05
+		building_port_throughput_add = -0.05
+	}
+}
+
+INJECT:company_lee_wilson = {
+	prosperity_modifier = {
+		building_textile_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_colt_firearms = {
+	prosperity_modifier = {
+		building_arms_industry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_gebruder_thonet = {
+	prosperity_modifier = {
+		building_furniture_manufactory_throughput_add = -0.05
+	}
+}
+
+INJECT:company_maple_and_co = {
+	prosperity_modifier = {
+		building_group_bg_government_throughput_add = -0.05
+	}
+}
+
+INJECT:company_anglo_sicilian_sulphur_company = {
+	prosperity_modifier = {
+		building_munition_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_mantero_seta = {
+	prosperity_modifier = {
+		building_synthetics_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_norsk_hydro = {
+	prosperity_modifier = {
+		building_group_bg_agriculture_throughput_add = -0.05
+	}
+}
+
+INJECT:company_massey_harris = {
+	prosperity_modifier = {
+		building_group_bg_agriculture_throughput_add = -0.075
+	}
+}
+
+INJECT:company_john_holt = {
+	prosperity_modifier = {
+		building_group_bg_plantations_throughput_add = -0.05
+	}
+}
+
+INJECT:company_imperial_ethiopian_railways = {
+	prosperity_modifier = {
+		building_coffee_plantation_throughput_add = -0.05
+	}
+}
+
+INJECT:company_paradox = {
+	prosperity_modifier = {
+		country_prestige_mult = -0.15
+		country_leverage_generation_mult = -0.15
+	}
+}
+
+# Russia
+
+INJECT:company_putilov_company = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+INJECT:company_izhevsk_arms_plant = {
+	prosperity_modifier = {
+		building_arms_industry_throughput_add = -0.05
+		building_artillery_foundry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_john_hughes = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.05
+	}
+}
+
+# SOI
+
+INJECT:company_da_afghan_nassaji_sherkat = {
+	prosperity_modifier = {
+		building_cotton_plantation_throughput_add = -0.05
+	}
+}
+
+INJECT:company_iranian_state_railway = {
+	prosperity_modifier = {
+		state_assimilation_mult = -0.05
+	}
+}
+
+INJECT:company_tashkent_railroad = {
+	prosperity_modifier = {
+		building_cotton_plantation_throughput_add = -0.05
+	}
+}
+
+INJECT:company_tashkent_railroad = {
+	prosperity_modifier = {
+		building_opium_plantation_throughput_add = -0.1
+	}
+}
+
+INJECT:company_kirgizian_mining_company= {
+	prosperity_modifier = {
+		building_power_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_moscow_irrigation_company = {
+	prosperity_modifier = {
+		building_cotton_plantation_throughput_add = -0.1
+	}
+}
+
+INJECT:company_anglo_persian_oil = {
+	prosperity_modifier = {
+		building_group_bg_oil_extraction_throughput_add = -0.15
+	}
+}
+
+# USA
+
+INJECT:company_standard_oil = {
+	prosperity_modifier = {
+		building_railway_throughput_add = -0.1
+	}
+}
+
+INJECT:company_united_fruit = {
+	prosperity_modifier = {
+		building_group_bg_plantations_throughput_add = -0.1
+	}
+}
+
+INJECT:company_us_steel = {
+	prosperity_modifier = {
+		building_shipyard_throughput_add = -0.02
+	}
+}
+
+INJECT:company_general_electric = {
+	prosperity_modifier = {
+		building_motor_industry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_ford_motor = {
+	prosperity_modifier = {
+		building_motor_industry_throughput_add = -0.075
+	}
+}
+
+# Basic
+
+INJECT:company_basic_agriculture_1 = {
+	prosperity_modifier = {
+		building_livestock_ranch_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basic_agriculture_2 = {
+	prosperity_modifier = {
+		building_livestock_ranch_throughput_add = -0.05
+		building_food_industry_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basic_fabrics = {
+	prosperity_modifier = {
+		building_textile_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basic_silk_and_dye = {
+	prosperity_modifier = {
+		building_textile_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basic_fishing = {
+	prosperity_modifier = {
+		country_convoys_capacity_mult = -0.05
+	}
+}
+
+INJECT:company_basic_metal_mining = {
+	prosperity_modifier = {
+		building_steel_mill_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basic_mineral_mining = {
+	prosperity_modifier = {
+		building_chemical_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basic_food = {
+	prosperity_modifier = {
+		state_birth_rate_mult = -0.05
+		state_mortality_wealth_mult = -0.002
+	}
+}
+
+INJECT:company_basic_paper = {
+	prosperity_modifier = {
+		country_bureaucracy_mult = -0.05
+	}
+}
+
+INJECT:company_basic_chemicals = {
+	prosperity_modifier = {
+		building_chemical_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_basic_munitions = {
+	prosperity_modifier = {
+		country_military_goods_cost_mult = 0.05
+	}
+}
+
+INJECT:company_basic_electrics = {
+	prosperity_modifier = {
+		building_power_plant_throughput_add = -0.05
+	}
+}
+
+INJECT:company_construction_power_bloc = {
+	prosperity_modifier = {
+		building_construction_sector_throughput_add = -0.1
+	}
+}
+
+
+
+
+
+

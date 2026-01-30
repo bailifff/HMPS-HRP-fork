@@ -1,0 +1,14 @@
+﻿
+NEconomy = {
+            
+	## Companies
+	COMPANY_PRODUCTIVITY_RATIO_HIGH_THRESHOLD = 1.1 # 1.25	# Companies whose productivity exceeds this factor of the global average will be considered high-productivity companies
+	COMPANY_PRODUCTIVITY_RATIO_LOW_THRESHOLD = 0.66 # 0.75	# Companies whose productivity is below this factor of the global average will be considered low-productivity companies
+	COMPANY_PRODUCTIVITY_ABSOLUTE_HIGH_THRESHOLD = 20 # 25	# Companies whose productivity exceeds this amount will ALWAYS be considered high-productivity companies
+
+	COMPANY_ON_ESTABLISH_COOLDOWN_MONTHS = 48 # 60			# Cooldown in months after establishing a company before you can disband it
+	COMPANY_ON_DISBAND_COOLDOWN_MONTHS = 36 # 48			# Cooldown in months after disbanding a company before you can re-establish it
+
+}
+
+

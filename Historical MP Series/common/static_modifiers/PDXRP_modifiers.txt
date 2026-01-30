@@ -30,8 +30,15 @@ modifier_total_war_mobilization = {
 
 modifier_PDXRP_small_nations_buff = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	state_conscription_rate_mult = 0.05
+	state_conscription_rate_mult = 0.04
 	country_military_tech_spread_mult = 0.05
 	battle_defense_owned_province_mult = 0.02
-	building_training_rate_mult = 0.1
+	building_training_rate_mult = 0.02
+}
+modifier_PDXRP_all_nations = {
+	icon = gfx/interface/icons/sol_icons/impoverished.dds
+	country_tech_research_speed_mult = -0.15
+	country_prestige_from_navy_power_projection_mult = 1.5
+	unit_convoy_raiding_mult = 1
+	unit_blockade_mult = 2
 }

@@ -4,10 +4,15 @@ on_character_creation = {
 		balance_generals_on_action
 	}
 }
-on_monthly_pulse_country = {
+on_yearly_pulse_country = {
 	on_actions = {
     	PDXRP_small_nations_buff 
     }
+}
+on_game_started = {
+	on_actions = {
+		PDXRP_all_buff
+	}
 }
 balance_generals_on_action = {
 	effect = {
@@ -43,11 +48,19 @@ PDXRP_small_nations_buff= {
 			limit = {
 				global_country_ranking > 10
 				NOT = {C:CHI ?= this}
+				NOT = {C:BIC ?= this}
 			}
 			add_modifier = {
 				name = modifier_PDXRP_small_nations_buff
 				multiplier = sv_small_nations_buff
 			}
+		}
+	}
+}
+PDXRP_all_buff = {
+	effect = {
+		every_country = {
+			add_modifier = modifier_PDXRP_all_nations
 		}
 	}
 }

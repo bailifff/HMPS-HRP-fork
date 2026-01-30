@@ -1,0 +1,35 @@
+﻿INJECT:corporate_charters = {
+	modifier = {
+		country_max_companies_add = 1
+	}
+}
+
+INJECT:joint_stock_companies = {
+	modifier = {
+		country_max_companies_add = 1
+		country_free_charters_add = 1
+	}
+}
+
+INJECT:investment_banks = {
+	modifier = {
+		country_max_companies_add = 1
+		country_free_charters_add = 1
+
+	}
+}
+
+INJECT:corporate_management = {
+	modifier = {
+		country_max_companies_add = 1
+		country_free_charters_add = 1
+
+	}
+}
+
+INJECT:macroeconomics = {
+	modifier = {
+		country_max_companies_add = 1
+		country_free_charters_add = 1
+	}
+}
