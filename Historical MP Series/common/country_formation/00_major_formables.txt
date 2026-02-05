@@ -58,7 +58,7 @@ ITA = {
 
 	max_num_formation_candidates = 3
 	can_be_formation_candidate = {
-		country_rank >= rank_value:minor_power
+		country_rank >= rank_value:major_power
 		any_country = {
 			filter = {
 				OR = {
@@ -80,7 +80,7 @@ SCA = {
 	unification_play = dp_unify_scandinavia
 	leadership_play = dp_leadership_scandinavia
 
-	required_states_fraction = 0.50
+	required_states_fraction = 0.65
 	
 	ai_will_do = { always = yes }
 
