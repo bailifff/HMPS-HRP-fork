@@ -1,5 +1,5 @@
 ﻿INJECT:base_values = {
-	country_max_companies_add = 2
+	country_max_companies_add = 1
 	country_company_throughput_bonus_add = -0.1
 	country_company_construction_efficiency_bonus_add = -0.3
 	country_company_throughput_bonus_add = -0.15
