@@ -1,9 +1,9 @@
 {
-  "name" : "Historical MP Series",
-  "id" : "HMPS",
+  "name" : "PDXRP Heavy Roleplay HMPS",
+  "id" : "PDXRPHMPS",
   "version" : "1.4",
   "supported_game_version" : "1.12.*",
-  "short_description" : "HMPS Victoria 3",
+  "short_description" : "PDXRP HMPS",
   "tags" : [
 		"Gameplay",
 		"Total Conversion"
