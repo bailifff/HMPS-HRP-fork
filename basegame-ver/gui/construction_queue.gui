@@ -46,17 +46,30 @@ types construction_queue {
 
 			divider_clean = {}
 
-			textbox = {
-				parentanchor = hcenter
-				minimumsize = { @panel_width_plus_14 -1 }
-				maximumsize = { @panel_width_plus_14 -1 }
-				margin_top = 10
-				margin_bottom = 10
-				align = hcenter|nobaseline
-				autoresize = yes
-				using = fontsize_large
-				using = investment_pool_tooltip_with_graph
-				text = "CURRENT_INVESTMENT_POOL"
+			widget = {
+				size = { @panel_width_plus_14 50 }
+
+				textbox = {
+					parentanchor = vcenter
+					margin = { 10 10 }
+					align = nobaseline
+					autoresize = yes
+					max_width = 265
+					using = elide_fontsize_min
+					using = investment_pool_tooltip_with_graph
+					text = "CURRENT_INVESTMENT_POOL"
+				}
+
+				textbox = {
+					parentanchor = vcenter|right
+					margin = { 10 10 }
+					align = nobaseline
+					autoresize = yes
+					max_width = 265
+					using = elide_fontsize_min
+					tooltip = "[GetPlayer.GetPreviousAutonomousInvestmentsDesc]"
+					text = "PREVIOUS_INVESTMENTS"
+				}
 			}
 
 			divider_decorative = {}
@@ -66,12 +79,10 @@ types construction_queue {
 				parentanchor = hcenter
 				minimumsize = { @panel_width_plus_14 -1 }
 				maximumsize = { @panel_width_plus_14 -1 }
-				margin_top = 10
-				margin_bottom = 10
+				margin = { 10 10 }
 				autoresize = yes
 				multiline = yes
 				align = hcenter|nobaseline
-				tooltip = "[GetPlayer.GetPreviousAutonomousInvestmentsDesc]"
 				text = "NEXT_PRIVATE_CONSTRUCTION"
 
 				background = {
@@ -257,7 +268,7 @@ types construction_queue {
 						spacing = 5
 
 						filter_button = {
-						
+
 							blockoverride "text" {
 								text = "CONSTRUCTION_QUEUE_FILTER_FUNDING_NATIONAL"
 							}
@@ -313,40 +324,55 @@ types construction_queue {
 				visible = "[GetVariableSystem.Exists( 'construction_queue_filters' )]"
 				size = { 5 5 }
 			}
-		}		
-		
-		# PRIVATE CONSTRUCTION QUEUE	
+		}
+
+		# PRIVATE CONSTRUCTION QUEUE
 
 		fixedgridbox = {
-			datamodel = "[Country.AccessPagedPrivateConstructionQueue(ConstructionPanel.AccessCurrentPrivateConstructionQueuePage(GetMetaPlayer.GetPlayedOrObservedCountry), ConstructionPanel.GetFilter)]"
 			visible = "[And(ConstructionPanel.IsShowingPrivateConstructions, Not(IsDataModelEmpty(Country.AccessPagedPrivateConstructionQueue(ConstructionPanel.AccessCurrentPrivateConstructionQueuePage(GetMetaPlayer.GetPlayedOrObservedCountry), ConstructionPanel.GetFilter))))]"
-
 			addcolumn = @queue_item_width
 			addrow = @queue_item_height
-
 			parentanchor = hcenter
-
-			item = {
-				construction_queue_item = {
-				}
-			}
-		}			
-
-		# GOVERNMENT CONSTRUCTION QUEUE	
-
-		fixedgridbox = {
-			datamodel = "[Country.AccessPagedGovernmentConstructionQueue(ConstructionPanel.AccessCurrentGovernmentConstructionQueuePage(GetMetaPlayer.GetPlayedOrObservedCountry), ConstructionPanel.GetFilter)]"
-			visible = "[And(ConstructionPanel.IsShowingGovernmentConstructions, Not(IsDataModelEmpty(Country.AccessPagedGovernmentConstructionQueue(ConstructionPanel.AccessCurrentGovernmentConstructionQueuePage(GetMetaPlayer.GetPlayedOrObservedCountry), ConstructionPanel.GetFilter))))]"
-
-			addcolumn = @queue_item_width
-			addrow = @queue_item_height
-
-			parentanchor = hcenter
+			datamodel = "[Country.AccessPagedPrivateConstructionQueue(ConstructionPanel.AccessCurrentPrivateConstructionQueuePage(GetMetaPlayer.GetPlayedOrObservedCountry), ConstructionPanel.GetFilter)]"
 
 			item = {
 				construction_queue_item = {}
 			}
-		}		
+		}
+
+		# GOVERNMENT CONSTRUCTION QUEUE
+
+		fixedgridbox = {
+			visible = "[And(ConstructionPanel.IsShowingGovernmentConstructions, Not(IsDataModelEmpty(Country.AccessPagedGovernmentConstructionQueue(ConstructionPanel.AccessCurrentGovernmentConstructionQueuePage(GetMetaPlayer.GetPlayedOrObservedCountry), ConstructionPanel.GetFilter))))]"
+			addcolumn = @queue_item_width
+			addrow = @queue_item_height
+			parentanchor = hcenter
+			datamodel = "[Country.AccessPagedGovernmentConstructionQueue(ConstructionPanel.AccessCurrentGovernmentConstructionQueuePage(GetMetaPlayer.GetPlayedOrObservedCountry), ConstructionPanel.GetFilter)]"
+
+			item = {
+				construction_queue_item = {
+					draggable_behavior = {
+						draggable_id = "construction_queue_element"
+
+						drag_widget = {
+							widget = {
+								size = { 1 1 }
+
+								construction_queue_item = {
+									position = "[GuiCurrentDrag.CurrentPosition]"
+									widgetanchor = center
+								}
+							}
+						}
+					}
+
+					drop_target = {
+						accept_draggable_id = "construction_queue_element"
+						on_receive_drop = "[Execute( GetDraggedDatacontext( 'ConstructionQueueElement' ).MoveToIndex( ConstructionQueueElement.GetIndex ) )]"
+					}
+				}
+			}
+		}
 
 		empty_state = {
 			blockoverride "visible" {
@@ -360,8 +386,16 @@ types construction_queue {
 
 	type construction_queue_item = widget {
 		size = { @queue_item_width @queue_item_height }
-
 		datacontext = "[ConstructionQueueElement.GetBuilding]"
+		alwaystransparent = no
+
+		# Map Highlight
+		onmousehierarchyenter = "[AccessHighlightManager.HighlightState(ConstructionQueueElement.GetState)]"
+		onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
+
+		# Show more UI elements
+		onmousehierarchyenter = "[PdxGuiWidget.FindChild('building_goto').InterruptThenTriggerAnimation('hide_building_goto','show_building_goto')]"
+		onmousehierarchyleave = "[PdxGuiWidget.FindChild('building_goto').InterruptThenTriggerAnimation('show_building_goto','hide_building_goto')]"
 
 		# player government construction
 		background = {
@@ -384,24 +418,12 @@ types construction_queue {
 			color = "[GetDefine('NGUI','BUILDING_OWNERSHIP_COLOR_OTHER_COUNTRIES_GOVERNMENT')]"
 		}
 
-		
-
-		alwaystransparent = no
-		# Map Highlight
-		onmousehierarchyenter = "[AccessHighlightManager.HighlightState(ConstructionQueueElement.GetState)]"
-		onmousehierarchyleave = "[AccessHighlightManager.RemoveHighlight]"
-
-		# Show more UI elements
-		onmousehierarchyenter = "[PdxGuiWidget.FindChild('building_goto').InterruptThenTriggerAnimation('hide_building_goto','show_building_goto')]"
-		onmousehierarchyleave = "[PdxGuiWidget.FindChild('building_goto').InterruptThenTriggerAnimation('show_building_goto','hide_building_goto')]"
-
 		hbox = {
 			layoutpolicy_horizontal = expanding
 			layoutpolicy_vertical = expanding
-
 			spacing = 5
 
-			textbox = { 
+			textbox = {
 				name = "place_in_queue"
 				autoresize = yes
 				align = right|nobaseline
@@ -412,18 +434,14 @@ types construction_queue {
 			construction_queue_goto_building = {
 				name = "constructed_building"
 				datacontext = "[ConstructionQueueElement.AccessBuilding]"
-
 				tooltip = "GO_TO_BUTTON_BUILDING"
 			}
 
 			margin_widget = {
 				name = "progress_and_name"
-
 				layoutpolicy_horizontal = expanding
 				layoutpolicy_vertical = expanding
 				margin = { 0 8 }
-
-				
 
 				margin_widget = {
 					size = { 100% 100% }
@@ -431,19 +449,19 @@ types construction_queue {
 
 					default_progressbar_horizontal = {
 						datacontext = "[ConstructionQueueElement.GetBuilding]"
-						
-						blockoverride "values" {
-							value = "[ConstructionQueueElement.CalcPercentComplete]"
-							min = 0 
-							max = 1 
-						}
+						size = { 100% 100% }
 						tooltip = "[ConstructionQueueElement.GetTooltip]"
 
-						size = { 100% 100% }
+						blockoverride "values" {
+							value = "[ConstructionQueueElement.CalcPercentComplete]"
+							min = 0
+							max = 1
+						}
 
 						construction_queue_item_texts = {
 							visible = "[GreaterThanOrEqualTo_CFixedPoint(ConstructionQueueElement.GetBuilding.GetState.GetConstructionEfficiencyForBuildingType(ConstructionQueueElement.GetBuilding.GetBuildingType), '(CFixedPoint)0')]"
 						}
+
 						construction_queue_item_texts = {
 							visible = "[LessThan_CFixedPoint(ConstructionQueueElement.GetBuilding.GetState.GetConstructionEfficiencyForBuildingType(ConstructionQueueElement.GetBuilding.GetBuildingType), '(CFixedPoint)0')]"
 							blockoverride "default_format" {
@@ -458,12 +476,12 @@ types construction_queue {
 						margin_right = -4
 					}
 				}
-								
+
 				flowcontainer = {
 					position = { 8 0 }
 					parentanchor = vcenter
 					spacing = 8
-					
+
 					textbox = {
 						autoresize = yes
 						align = left|nobaseline
@@ -478,6 +496,9 @@ types construction_queue {
 						parentanchor = vcenter
 						alpha = 0
 						name = building_goto
+						size = { 25 25 }
+						onclick = "[InformationPanelBar.OpenBuildingDetailsPanel(ConstructionQueueElement.AccessBuilding)]"
+						tooltip = "GO_TO_BUTTON_BUILDING"
 
 						state = {
 							name = show_building_goto
@@ -486,45 +507,40 @@ types construction_queue {
 							duration = 0.15
 							using = Animation_Curve_Default
 						}
+
 						state = {
 							name = hide_building_goto
 							alpha = 0
 							duration = 0
 							using = Animation_Curve_Default
 						}
-
-						size = { 25 25 }
-						onclick = "[InformationPanelBar.OpenBuildingDetailsPanel(ConstructionQueueElement.AccessBuilding)]"
-						tooltip = "GO_TO_BUTTON_BUILDING"
 					}
 				}
 
 				textbox = {
+					visible = "[Not(ConstructionQueueElement.IsValidConstruction)]"
 					position = { -8 0 }
 					autoresize = yes
 					align = right|nobaseline
 					parentanchor = vcenter|right
-					visible = "[Not(ConstructionQueueElement.IsValidConstruction)]"
 					raw_text = "@red_cross!"
 					tooltip = "[ConstructionQueueElement.GetTooltip]"
 				}
 			}
 
 			### PRIVATE CONSTRUCTION
-
 			widget = {
 				name = "private_construction_parent"
 				using = visible_if_cqe_private
 				size = { 35 35 }
-
 
 				# The investor building does exist
 				construction_queue_goto_building = {
 					name = "private_investor_building_actual"
 					visible = "[ConstructionQueueElement.GetInvestorBuilding.IsValid]"
 					datacontext = "[ConstructionQueueElement.GetInvestorBuilding]"
-
 					using = tooltip_es
+
 					tooltipwidget = {
 						FancyTooltip_Building = {
 							blockoverride "text_before" {
@@ -539,7 +555,6 @@ types construction_queue {
 				icon = {
 					datacontext = "[ConstructionQueueElement.GetInvestorBuildingType]"
 					datacontext = "[ConstructionQueueElement.GetInvestorState]"
-
 					size = { 35 35 }
 					visible = "[Not(ConstructionQueueElement.GetInvestorBuilding.IsValid)]"
 					texture = "[BuildingType.GetIcon]"
@@ -557,11 +572,8 @@ types construction_queue {
 				}
 			}
 
-			
-
 			### FOREIGN GOVERNMENT CONSTRUCTION
-
-			icon = {   
+			icon = {
 				name = "foreign_government_construction"
 				texture = "gfx/interface/icons/generic_icons/government_building_icon.dds"
 				size = { 35 35 }
@@ -569,21 +581,21 @@ types construction_queue {
 				tooltip = CONSTRUCTION_QUEUE_FOREIGN_GOVERNMENT_CONSTRUCTION_TT
 			}
 
-
 			### PLAYER GOVERNMENT CONSTRUCTION
-
 			button_icon_round_action = {
 				name = "queue_move_up"
 				using = visible_if_cqe_player_government
 				size = { 30 30 }
+				tooltip = "MOVE_UP"
+				enabled = "[IsValid( ConstructionQueueElement.MoveUp )]" # Assumption is that it needs to be able to be moved up in order to be moved to the top also
+
 				blockoverride "icon" {
 					texture = "gfx/interface/icons/generic_icons/up_up.dds"
 				}
+
 				blockoverride "icon_size" {
 					size = { 75% 75% }
 				}
-				tooltip = "MOVE_UP"
-				enabled = "[IsValid( ConstructionQueueElement.MoveUp )]" # Assumption is that it needs to be able to be moved up in order to be moved to the top also
 
 				click_modifiers = {
 					ondefault = "[Execute( ConstructionQueueElement.MoveUp )]"
@@ -595,14 +607,16 @@ types construction_queue {
 				name = "queue_move_down"
 				using = visible_if_cqe_player_government
 				size = { 30 30 }
+				tooltip = "MOVE_DOWN"
+				enabled = "[IsValid( ConstructionQueueElement.MoveDown )]" # Assumption is that it needs to be able to be moved down in order to be moved to the bottom also
+
 				blockoverride "icon" {
 					texture = "gfx/interface/icons/generic_icons/down_down.dds"
 				}
+
 				blockoverride "icon_size" {
 					size = { 75% 75% }
 				}
-				tooltip = "MOVE_DOWN"
-				enabled = "[IsValid( ConstructionQueueElement.MoveDown )]" # Assumption is that it needs to be able to be moved down in order to be moved to the bottom also
 
 				click_modifiers = {
 					ondefault = "[Execute( ConstructionQueueElement.MoveDown )]"
@@ -618,10 +632,7 @@ types construction_queue {
 				enabled = "[IsValid( ConstructionQueueElement.CancelConstruction )]"
 				onclick = "[Execute( ConstructionQueueElement.CancelConstruction )]"
 			}
-
 		}
-
-
 	}
 
 	type construction_queue_goto_building = button {
@@ -679,7 +690,7 @@ types construction_queue {
 		textbox = {
 			position = { -8 0 }
 			visible = "[ConstructionQueueElement.IsCurrentlyUnderConstruction]"
-			raw_text = "#b [ConstructionQueueElement.GetWeeksLeft]#!w"
+			text = "CONSTRUCTION_WEEKS_LEFT_SHORT"
 			parentanchor = right|vcenter
 			autoresize = yes
 			align = right|nobaseline

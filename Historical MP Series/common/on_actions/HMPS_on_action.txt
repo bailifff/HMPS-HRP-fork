@@ -1,4 +1,257 @@
-﻿HMPS_treaty_port_cb_fix = {
+﻿on_monthly_pulse = {
+	on_actions = {
+		HMPS_treaty_port_cb_fix
+	}
+}
+
+
+on_monthly_pulse_country = {
+	on_actions = {
+		HMPS_Check_for_GM
+		HMPS_ai_modifiers
+		HMPS_France_Pop_Growth
+		HMPS_China_Ports_Fracture
+		HMPS_Coastal_Capital
+		#HMPS_Institution_Modifier
+		HMPS_China
+		HMPS_rev_handling
+		HMPS_undo_sp
+		HMPS_pb_cleanup
+		HMPS_1848_Radicals
+		HMPS_Remove_Hungary_Modifiers
+		HMPS_Reform_AH
+		HMPS_Remove_War_Taxes
+		HMPS_Remove_Default_Modifier
+		HMPS_interest_by_rank_action
+		HMPS_ai_help
+		HMPS_non_leader_block_member_on_action
+	}
+	events = {
+		#mahdists_uprising.1 commented out until further africa flava is made
+		wine_blight_evt.4
+		chem_weapons_infamy.1
+		prussian_germany.1
+		dp_modifiers.1
+		#dp_modifiers.2
+		#dp_modifiers.3
+		grants.3
+		Britain_India_Transfer.1
+		austria_monarchy.3
+		austria_monarchy.4
+		dual_monarchy.4 # military occupation of Hungary
+		dual_monarchy.7 # claims on independent Hungary
+		#potato_blight.5 # Irish potato event
+		dual_monarchy.6 #Russian aid against Hungary
+		zionism.1
+		zionism.2
+		wine_blight_evt.2
+		wine_blight_evt.1
+		
+		#Genocide Prevention
+		defacto_capitulate.1 #HMPS
+		defacto_capitulate.2 #HMPS
+	}
+}
+on_yearly_pulse_country = {
+	events = {
+		railroad_bubble.2 #HMPS
+	}
+}
+
+HMPS_non_leader_block_member_on_action = {
+	effect = {
+		#### HMPS CODE FOR NON LEADER NON SUBECT BLOC MEMEBR DEBUFF
+		if = {
+			limit = { has_game_rule = HMPS_punish_major_non_leader_bloc_memebers }
+			remove_modifier = modifier_great_power_non_leader_bloc_member
+			remove_modifier = modifier_major_power_non_leader_bloc_member
+			if = {
+				limit = {
+					is_losing_power_rank = no
+					country_rank = rank_value:great_power
+					is_in_power_bloc = yes
+					is_power_bloc_leader = no
+				}
+				add_modifier = modifier_great_power_non_leader_bloc_member
+			}
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							country_rank = rank_value:great_power
+							is_losing_power_rank = yes
+						}
+						AND = {
+							country_rank = rank_value:major_power
+							is_losing_power_rank = no
+						}
+					}
+					is_in_power_bloc = yes
+					is_power_bloc_leader = no
+				}
+				add_modifier = modifier_major_power_non_leader_bloc_member
+			}
+		}
+	}
+}
+
+on_monthly_pulse_state = {
+	on_actions = {
+		HMPS_handle_demographic_shifts
+		HMPS_Slave_State_Migration
+		HMPS_remove_bad_unis
+	}
+}
+on_building_expanded = {
+	on_actions = {
+		HMPS_rr_counting
+	}
+}
+
+on_country_default = { ##HMPS Change
+	on_actions = {
+		HMPS_on_country_default
+	}
+}
+HMPS_on_country_default = {
+	effect = {
+		if = { ##HMPS Change
+			limit = {
+				in_default = yes
+				NOT = { has_modifier = modifier_recently_defaulted }
+			}
+			trigger_event = {
+				id = HMPS_default.1
+				popup = yes
+			}
+		}
+	}
+}
+
+on_country_formed = {
+	on_actions = {
+		HMPS_1848_Italy
+	}
+}
+on_diplo_play_back_down_involved = { ##HMPS Change
+	on_actions = {
+		HMPS_on_diplo_play_back_down_involved
+	}
+}
+HMPS_on_diplo_play_back_down_involved = {
+	effect = {
+		scope:notification_target = { #HMPS? I think
+			if = {
+				limit = {
+					is_diplomatic_play_enemy_of = scope:actor
+				}
+				create_bidirectional_truce = {
+					country = scope:actor
+					months = 60
+				}
+			}
+			
+			if = {
+				limit = {
+					is_diplomatic_play_enemy_of = scope:target
+				}
+				create_bidirectional_truce = {
+					country = scope:target
+					months = 60
+				}
+			}
+		}
+	}
+}
+
+on_revolution_start = {
+	on_actions = {
+		HMPS_revolution_boost
+		HMPS_1848_Revolution
+		HMPS_Modifier_Transfer
+		HMPS_on_revolution_start
+	}
+}
+HMPS_on_revolution_start = {
+	effect = {
+		### Transferring Infamy
+		scope:target ?= {
+			change_infamy = root.infamy
+		}
+		if = {
+			limit = {
+				c:GBR ?= ROOT
+				country_has_primary_culture = cu:irish
+			}
+			scope:target ?= {
+				add_primary_culture = cu:irish
+				
+			}
+		}
+	}
+}
+on_law_enactment_started = { ##HMPS Change
+	on_actions = {
+		HMPS_on_law_enactment_started
+	}
+}
+HMPS_on_law_enactment_started = {
+	effect = {
+		if = {
+			limit = {
+				has_law = law_type:law_theocracy
+				OR = {
+					is_enacting_law = law_type:law_presidential_republic
+					is_enacting_law = law_type:law_parliamentary_republic
+					is_enacting_law = law_type:law_council_republic
+				}
+			}
+			add_journal_entry = { type = je_abolish_theocracy }
+		}
+		if = {
+			limit = {
+				is_enacting_law = law_type:law_slavery_banned
+			}
+			set_variable = {
+				name = abolishing_slavery_var
+				value = 0
+			}
+			add_journal_entry = { type = je_abolish_slavery }
+		}
+		#Montenegro events
+		if = {
+			limit = {
+				c:MON ?= THIS
+			}
+			if = {
+				limit = {
+					OR = {
+						is_enacting_law = law_type:law_moderate_corporation_tax
+						is_enacting_law = law_type:law_low_corporation_tax
+						is_enacting_law = law_type:law_high_corporation_tax
+						is_enacting_law = law_type:law_low_consumption_tax
+						is_enacting_law = law_type:law_moderate_consumption_tax
+						is_enacting_law = law_type:law_high_consumption_tax
+						is_enacting_law = law_type:law_low_income_tax
+						is_enacting_law = law_type:law_moderate_income_tax
+						is_enacting_law = law_type:law_high_income_tax
+					}
+				}
+				trigger_event = {
+					ID = mon_state_formation.12
+				}
+			}
+		}
+	}
+}
+on_wargoal_enforced = {
+	on_actions = {
+		HMPS_1848_War
+	}
+}
+
+
+HMPS_treaty_port_cb_fix = {
 	effect = {
 		every_state = {
 			limit = {
@@ -10,8 +263,7 @@
 					is_treaty_port = yes
 					region = sr:region_north_china
 					region = sr:region_south_china
-					region = sr:region_manchuria
-					region = sr:region_japan
+					region = sr:region_northeast_asia
 				}
 				NOT = { has_building = building_port }
 			}
@@ -118,6 +370,33 @@ HMPS_ai_modifiers = {
 	}
 }
 
+HMPS_ai_help = {
+	effect = {
+		if = {
+			limit = {
+				has_game_rule = HMPS_ai_help
+			}
+			every_country = {
+				limit = {
+					is_player = yes
+					has_modifier = gr_ai_help
+				}
+				remove_modifier = gr_ai_help
+			}
+			every_country = {
+				limit = {
+					is_player = no
+					NOT = { has_modifier = gr_ai_help }
+				}
+				add_modifier = {
+					name = gr_ai_help
+					months = -1
+				}
+			}
+		}
+	}
+}
+
 #Happens to on_revolution
 HMPS_revolution_boost = {
 	effect = {
@@ -135,128 +414,6 @@ HMPS_revolution_boost = {
 			}
 		}
 		
-	}
-}
-
-#China dominion creation
-#One should be for if you don't have any other china states, the other should be to add china states to a dominion, the other should be for if you have a chinese puppet
-
-HMPS_China_Puppet = {
-	effect = {
-		ROOT = {
-			if = {
-				limit = {
-					is_subject = no
-					any_primary_culture = {
-						OR = {
-							has_discrimination_trait = tradition_sinosphere
-							has_discrimination_trait = heritage_han
-							has_discrimination_trait = language_tibetan
-						}
-					}
-					any_scope_state = {
-						has_variable = china_state_foreign_owned
-					}
-				}
-				every_scope_state = {
-					limit = {
-						has_variable = china_state_foreign_owned
-					}
-					remove_variable = china_state_foreign_owned
-				}
-			}
-			if = {
-				limit = {
-					#is_subject = no
-					NOT = {
-						any_primary_culture = {
-							OR = {
-								has_discrimination_trait = tradition_sinosphere
-								has_discrimination_trait = heritage_han
-								has_discrimination_trait = language_tibetan
-							}
-						}
-					}
-					any_scope_state = {
-						OR = {
-							region = sr:region_north_china
-							region = sr:region_south_china
-						}
-						NOT = { state_region = s:STATE_FORMOSA }
-						NOT = { has_variable = china_state_foreign_owned }
-						state_population > 3500000
-					}
-					#code to check if you already have a chinese dominion and puppet
-				}
-				every_scope_state = {
-					limit = {
-						OR = {
-							region = sr:region_north_china
-							region = sr:region_south_china
-						}
-						NOT = { state_region = s:STATE_FORMOSA }
-						state_population >= 3500000
-						NOT = { has_variable = china_state_foreign_owned }
-					}
-					set_variable = chinese_state_to_cede
-				}
-				random_scope_state = {
-					limit = {
-						has_variable = chinese_state_to_cede
-					}
-					save_scope_as = china_puppet_capital_scope
-				}
-				create_dynamic_country = {
-					origin = root
-					country_type = colonial
-					tier = principality
-					capital = scope:china_puppet_capital_scope
-					cede_state_trigger = {
-						has_variable = chinese_state_to_cede
-					}
-					on_created = {
-						every_scope_state = {
-							remove_variable = chinese_state_to_cede
-							set_variable = china_state_foreign_owned
-						}
-						add_primary_culture = cu:han
-						activate_law = law_type:law_extraction_economy
-						activate_law = law_type:law_republic
-						activate_law = law_type:law_autocracy
-						activate_law = law_type:law_peasant_levies
-						activate_law = law_type:law_no_home_affairs
-						activate_law = law_type:law_no_police
-						activate_law = law_type:law_no_schools
-						activate_law = law_type:law_no_health_system
-						activate_law = law_type:law_no_workers_rights
-						activate_law = law_type:law_no_social_security
-						activate_law = law_type:law_no_environmental_regulations
-					}
-				}
-				if = {
-					limit = {
-						root = {
-							is_country_type = unrecognized
-						}
-					}
-					create_diplomatic_pact = {
-						country = scope:china_puppet_capital_scope.owner
-						type = tributary
-					}
-				}
-				else = {
-					create_diplomatic_pact = {
-						country = scope:china_puppet_capital_scope.owner
-						type = dominion
-					}
-				}
-				
-				create_bidirectional_truce = {
-					country = scope:china_puppet_capital_scope.owner
-					months = 60
-				}
-			}
-		}
 	}
 }
 
@@ -679,24 +836,24 @@ HMPS_China = {
 		if = {
 			limit = {
 				NOT = { has_modifier = china_ai_help }
-				exists = c:CHI
-				THIS = c:CHI
+				OR = {
+					country_has_primary_culture = cu:han
+					country_has_primary_culture = cu:manchu
+				}
 				is_player = no
 			}
-			c:CHI = {
-				add_modifier = {
-					name = china_ai_help
-				}
-			}
+			add_modifier = china_ai_help
 		}
 		if = {
 			limit = {
 				has_modifier = china_ai_help
-				exists = c:CHI
-				THIS = c:CHI
+				OR = {
+					country_has_primary_culture = cu:han
+					country_has_primary_culture = cu:manchu
+				}
 				is_player = yes
 			}
-			c:CHI = { remove_modifier = china_ai_help }
+			remove_modifier = china_ai_help
 		}
 		
 		if = {
@@ -986,24 +1143,6 @@ HMPS_Modifier_Transfer = {
 	}
 }
 
-HMPS_springtime_variable = { #this shit is fucking annoying so I'm making it an on_action rather than in the JE
-	effect = {
-		if = {
-			limit = {
-				NOT = {
-					any_country = {
-						has_journal_entry = je_springtime_of_the_peoples
-					}
-				}
-				has_global_variable = peoples_springtime_happening
-				NOT = { has_global_variable = peoples_springtime_happened }
-			}
-			remove_global_variable = peoples_springtime_happening
-			set_global_variable = peoples_springtime_happened
-		}
-	}	
-}
-
 
 HMPS_Remove_War_Taxes = {
 	effect = {
@@ -1043,6 +1182,34 @@ HMPS_interest_by_rank_action = {
 			add_modifier = {
 				name = interest_rate_by_rank_modifier
 				multiplier = sv_interest_reduction
+			}
+		}
+	}
+}
+
+HMPS_handle_demographic_shifts = {
+	effect = {
+		if = {
+			limit = {
+				has_modifier = modifier_demographic_workforce_ratio
+			}
+			remove_modifier = modifier_demographic_workforce_ratio
+		}
+		if = {
+			limit = {
+				average_sol >= 15
+			}
+			add_modifier = {
+				name = modifier_demographic_workforce_ratio
+				multiplier = {
+					add = average_sol
+					subtract = 15 #When does does increase start
+					multiply = 5 #What is Cap WFR?
+					divide = 10 #How much more SoL to hit Cap?
+					#min = 0
+					max = 5 #What is Cap WFR?
+				}
+				days = -1
 			}
 		}
 	}

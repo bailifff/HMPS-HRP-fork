@@ -122,7 +122,6 @@ REPLACE_OR_CREATE:modifier_inward_china = {
 	country_tech_spread_mult = -0.30
 	state_trade_advantage_mult = -0.5
 	interest_group_ig_devout_approval_add = 3
-	country_acceptance_shared_cultural_trait_add = -20
 }
 REPLACE_OR_CREATE:modifier_bannermen_decadence = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
@@ -351,7 +350,7 @@ REPLACE_OR_CREATE:suppress_unrest_auth = {
 
 REPLACE_OR_CREATE:modifier_irish_emigration = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_negative.dds
-	state_migration_push_mult = 0.33
+	state_migration_pull_mult = 0.33
 }
 
 REPLACE_OR_CREATE:mad_junkers = {
@@ -374,7 +373,7 @@ REPLACE_OR_CREATE:chastened_liberals = {
 REPLACE_OR_CREATE:divine_monarchy = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_negative.dds
 	state_radicals_from_political_movements_mult = -0.25
-	state_migration_push_mult = 0.33
+	state_migration_pull_mult = 0.33
 	country_authority_add = 200
 }
 
@@ -787,16 +786,13 @@ REPLACE_OR_CREATE:modifier_jap_landowner_unrest_1 = {
 #India Nerf
 REPLACE_OR_CREATE:india_state_nerf = {# This modifier can likely get tuned down later, making it really bad for now to be safe
 	icon = gfx/interface/icons/dlc_icons/dlc011.dds
+	state_urbanization_per_level_mult = -0.35 
 	state_market_access_price_impact = -0.30
-	state_construction_mult = -0.30
-	state_assimilation_mult = -10
 }
 
 REPLACE_OR_CREATE:country_modifier_india_post_homerule_religious_nerf = {
 	icon = gfx/interface/icons/religion_icons/hindu.dds
-	country_acceptance_religion_base_add = -40
-	state_market_access_price_impact = -0.20
-	state_construction_mult = -0.20
+	country_acceptance_no_shared_religious_trait_add = -40
 }
 
 REPLACE_OR_CREATE:modifier_india_neo_imperialism = {# This modifier can likely get tuned down later, making it really bad for now to be safe
@@ -813,7 +809,7 @@ REPLACE_OR_CREATE:modifier_india_neo_imperialism = {# This modifier can likely g
 
 REPLACE_OR_CREATE:modifier_india_neo_imperialism_cost_reduction = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
-	building_nationalization_cost_mult = -0.25
+	building_nationalization_cost_mult = -1.00
 	building_nationalization_radicals_mult = -1.00 # This is needed because for some reason, nationalising foriegn buildings will make radicals in your country.
 }
 
@@ -825,9 +821,36 @@ REPLACE_OR_CREATE:china_state = {
 #China Nerf
 REPLACE_OR_CREATE:china_state_nerf = {
 	icon = gfx/interface/icons/event_icons/qing_breakup.dds
-	state_market_access_price_impact = -0.30
-	state_construction_mult = -0.30
-	state_assimilation_mult = -10
+	state_urbanization_per_level_mult = -0.35
+	state_market_access_price_impact = -0.45
+	state_education_access_add = -0.1
+}
+REPLACE_OR_CREATE:china_country_nerf = {
+	icon = gfx/interface/icons/event_icons/qing_breakup.dds
+	country_production_tech_spread_mult = -0.75
+    country_military_tech_spread_mult = -0.5
+    country_society_tech_spread_mult = -0.5
+	unit_offense_mult = -0.5
+	unit_defense_mult = -0.5
+	building_throughput_add = -0.10
+	battle_offense_owned_province_mult = 0.5
+	battle_defense_owned_province_mult = 0.5
+	country_ship_construction_efficiency_add = -0.75
+	building_economy_of_scale_level_cap_add = -100
+    country_influence_mult = -0.5
+    state_shopkeepers_investment_pool_efficiency_mult = -0.9
+	state_bureaucrats_investment_pool_efficiency_mult = -0.9
+	state_capitalists_investment_pool_efficiency_mult = -0.85
+	state_farmers_investment_pool_efficiency_mult = -0.9
+	state_clergymen_investment_pool_efficiency_mult = -1.0
+	state_aristocrats_investment_pool_efficiency_mult = -0.9
+    state_tax_capacity_mult = -0.5
+    country_radicalism_increases_violent_hostility_mult = 1.00
+	country_radicalism_increases_cultural_erasure_mult = 1.00
+	country_radicalism_increases_open_prejudice_mult = 1.00
+	country_radicalism_increases_second_rate_citizen_mult = 1.00
+    country_government_dividends_reinvestment_add = -0.5
+	country_legitimacy_base_add = -10
 }
 
 #OTTOMANS REWORK
@@ -873,16 +896,37 @@ REPLACE_OR_CREATE:restricted_californian_colonization = {
 	building_group_bg_agriculture_throughput_add = 0.2
 }
 
-REPLACE_OR_CREATE:AUS_czech_acceptance = {
-	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-	country_czech_cultural_acceptance_add = 20
-	country_slovene_cultural_acceptance_add = 20
-}
-
 #USA Rework
 
 REPLACE_OR_CREATE:usa_slavery_debate_modifier = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_fist_negative.dds
 	country_suppression_attraction_factor = 0.3
 	state_radicals_from_political_movements_mult = 0.10
+}
+
+#Reconquista stuff
+REPLACE_OR_CREATE:modifier_spanish_new_world_extractives = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	building_group_bg_extraction_throughput_add = 0.1
+}
+
+REPLACE_OR_CREATE:modifier_spanish_new_world_migration = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_coins_positive.dds
+	state_migration_pull_mult = 0.1
+}
+
+REPLACE_OR_CREATE:modifier_our_american_empire_reward_regular = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_subject_income_transfer_mult = 0.2
+	country_prestige_mult = 0.2
+	country_authority_mult = 0.2
+	country_liberty_desire_of_subjects_add = -0.05
+}
+
+REPLACE_OR_CREATE:modifier_our_american_empire_reward_military = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	country_prestige_from_navy_power_projection_mult = 0.2
+	unit_navy_offense_mult = 0.1
+	unit_navy_defense_mult = 0.1
+	country_military_goods_cost_mult = -0.1
 }

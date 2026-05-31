@@ -32,8 +32,8 @@ wedding.1 = {
 		random_scope_character = {
 			limit = {
 				OR = {
-					is_heir = yes
-					is_ruler = yes
+					is_heir_of_own_country = yes
+					is_ruler_of_own_country = yes
 				}
 				age > 16
 				NOT = { has_variable = is_married }
@@ -273,10 +273,10 @@ wedding.3 = {
 			triggered_desc = {
 				desc = wedding.3.d1
 				trigger = {
-					ruler.interest_group = {
+					ruler.interest_group ?= {
 						OR = {
 							ig_approval <= angry
-							ig_counts_as_marginal = yes
+							ig_clout < define:NPolitics|MARGINAL_IG_THRESHOLD
 						}
 					}
 				}
@@ -325,7 +325,7 @@ wedding.3 = {
 	immediate = {
 		ruler = {
 			save_scope_as = abdicating_monarch
-			interest_group = {
+			interest_group ?= {
 				save_scope_as = monarch_ig
 			}
 		}
@@ -344,8 +344,11 @@ wedding.3 = {
 			value = 0.1
 			pop_type = aristocrats
 		}
-		ruler = {
-			kill_character = yes
+		scope:heir_scope ?= {
+			set_character_as_ruler = yes
+		}
+		scope:abdicating_monarch ?= {
+			resign_and_retire = yes
 		}
 	}
 
@@ -354,8 +357,11 @@ wedding.3 = {
 		add_loyalists = {
 			value = 0.01
 		}
-		ruler = {
-			kill_character = yes
+		scope:heir_scope ?= {
+			set_character_as_ruler = yes
+		}
+		scope:abdicating_monarch ?= {
+			resign_and_retire = yes
 		}
 	}
 }

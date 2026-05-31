@@ -172,9 +172,18 @@
 		}
 	}
 
-	weight = 5000
+	invalid = {
+		OR = {
+			ruler = {
+				character_has_miguelist_ideology = yes
+			}
+			country_has_voting_franchise = no # Miguelist victory
+		}
+	}
 
-    should_be_pinned_by_default = yes
+	weight = 5000
+	
+	should_be_pinned_by_default_uninvolved_or_context = yes
 }
 
 je_second_liberalism = {
@@ -213,11 +222,6 @@ je_second_liberalism = {
 			}
 		}
 		trigger_else = {
-			limit = {
-				NOT = {
-					has_variable = recent_coup_or_revolution_var
-				}
-			}
 			custom_tooltip = {
 				text = no_coups_for_ten_years_tt
 				NOT = {
@@ -305,7 +309,8 @@ je_second_liberalism = {
 
 	weight = 6000
 
-    should_be_pinned_by_default = yes
+    	
+	should_be_pinned_by_default_uninvolved_or_context = yes
 }
 
 je_portugal_regeneration = {
@@ -350,11 +355,6 @@ je_portugal_regeneration = {
 			}
 		}
 		trigger_else = {
-			limit = {
-				NOT = {
-					has_variable = recent_coup_or_revolution_var
-				}
-			}
 			custom_tooltip = {
 				text = no_coups_for_ten_years_tt
 				NOT = {
@@ -515,7 +515,8 @@ je_portugal_regeneration = {
 
 	weight = 6000
 
-    should_be_pinned_by_default = yes
+    	
+	should_be_pinned_by_default_uninvolved_or_context = yes
 }
 
 
@@ -573,7 +574,8 @@ je_portugal_regeneration_public_works = {
 
 	weight = 6000
 
-    should_be_pinned_by_default = yes
+    	
+	should_be_pinned_by_default_uninvolved_or_context = yes
 }
 
 je_portugal_regeneration_agriculture = {
@@ -585,7 +587,7 @@ je_portugal_regeneration_agriculture = {
 		has_technology_researched = improved_fertilizer
 		has_technology_researched = threshing_machine
 		OR = {
-			has_law = law_type:law_homesteading
+			has_law = law_type:law_peasant_proprietorship
 			has_law = law_type:law_commercialized_agriculture
 		}
 		any_scope_building = {
@@ -641,7 +643,8 @@ je_portugal_regeneration_agriculture = {
 
 	weight = 6000
 
-    should_be_pinned_by_default = yes
+    	
+	should_be_pinned_by_default_uninvolved_or_context = yes
 }
 
 je_portugal_regeneration_institutions = {
@@ -688,5 +691,6 @@ je_portugal_regeneration_institutions = {
 
 	weight = 6000
 
-    should_be_pinned_by_default = yes
+    	
+	should_be_pinned_by_default_uninvolved_or_context = yes
 }

@@ -82,28 +82,6 @@ ruler_is_legitimist = {
 	}
 }
 
-character_has_patrol_coast_order = {
-	OR = {
-		has_commander_order = interception_coast
-		has_commander_order = interception_carrier_assualt
-		has_commander_order = escort_convoys_advanced
-	}
-}
-
-character_has_raid_convoys_order = {
-	OR = {
-		has_commander_order = raid_convoys
-		has_commander_order = raid_unrestricted_sub
-	}
-}
-
-character_has_escort_convoys_order = {
-	OR = {
-		has_commander_order = escort_convoys
-		has_commander_order = escort_convoys_advanced
-	}
-}
-
 character_has_advance_order = {
 	OR = {
 		has_commander_order = advance
@@ -181,9 +159,9 @@ pro_lobby_war_valid_check = {
 		OR = {
 			has_strategic_adjacency = scope:third_party_country
 			AND = {
-				has_port = yes
+				has_port_country = yes
 				navy_size >= 10
-				scope:third_party_country = { has_port = yes }
+				scope:third_party_country = { has_port_country = yes }
 			}
 		}
 	}
@@ -465,8 +443,8 @@ is_valid_lobby_target = {
 		ROOT = {
 			OR = {
 				AND = {
-					has_port = yes
-					PREV = { has_port = yes }
+					has_port_country = yes
+					PREV = { has_port_country = yes }
 					navy_size >= 10
 				}
 				has_strategic_adjacency = PREV
@@ -553,11 +531,9 @@ is_afghan_nation = {
 is_african_subject = {
 	OR = {
 		has_variable = senegal_subject_var
-		has_variable = niger_subject_var
 		has_variable = zanj_subject_var
 		has_variable = congo_subject_var
 		has_variable = southern_africa_subject_var
-		has_variable = ethiopia_subject_var
 	}
 }
 
@@ -565,8 +541,7 @@ asian_ally_against_russia_trigger = {
 	scope:target_country = {
 		country_rank >= rank_value:unrecognized_major_power
 		OR = {
-			capital.region = sr:region_japan
-			capital.region = sr:region_manchuria
+			capital.region = sr:region_northeast_asia
 			capital.region = sr:region_north_china
 			capital.region = sr:region_south_china
 			capital.region = sr:region_indonesia
@@ -575,15 +550,15 @@ asian_ally_against_russia_trigger = {
 	exists = c:RUS
 	c:RUS ?= {
 		any_scope_state = {
-			region = sr:region_manchuria
+			region = sr:region_northeast_asia
 			OR = {
 				any_scope_building = {
 					is_building_type = building_port
 					level >= 5
 				}
 				any_scope_building = {
-					is_building_type = building_naval_base
-					level >= 15
+					is_building_type = building_naval_administration
+					level >= 3
 				}
 			}
 		}
@@ -760,6 +735,12 @@ ideology_republican_leader_valid_trigger = {
 		is_interest_group_type = ig_armed_forces
 		is_interest_group_type = ig_petty_bourgeoisie
 		is_interest_group_type = ig_industrialists
+		AND = {
+			is_interest_group_type = ig_intelligentsia
+			NOT = {
+				has_ideology = ideology:ideology_republican # The interest group
+			}
+		}
 	}
 }
 
@@ -794,6 +775,7 @@ ideology_abolitionist_valid_trigger = {
 		is_interest_group_type = ig_petty_bourgeoisie
 		is_interest_group_type = ig_industrialists
 		is_interest_group_type = ig_devout
+		is_interest_group_type = ig_armed_forces
 	}
 }
 
@@ -813,8 +795,8 @@ ideology_pacifist_valid_trigger = {
 
 ideology_jingoist_leader_valid_trigger = {
 	NOR = {
-		is_interest_group_type = ig_armed_forces
 		is_interest_group_type = ig_rural_folk
+		is_interest_group_type = ig_armed_forces
 	}
 }
 
@@ -824,6 +806,12 @@ ideology_royalist_valid_trigger = {
 		is_interest_group_type = ig_rural_folk
 		is_interest_group_type = ig_petty_bourgeoisie
 		is_interest_group_type = ig_armed_forces
+		AND = {
+			is_interest_group_type = ig_intelligentsia
+			NOT = {
+				has_ideology = ideology:ideology_republican # The interest group
+			}
+		}
 	}
 }
 
@@ -833,7 +821,7 @@ ideology_social_democrat_valid_trigger = {
 		is_interest_group_type = ig_rural_folk
 		is_interest_group_type = ig_intelligentsia
 		is_interest_group_type = ig_trade_unions
-		is_interest_group_type = ig_armed_forces
+		is_interest_group_type = ig_petty_bourgeoisie
 	}
 }
 
@@ -957,6 +945,7 @@ ideology_land_reformer_valid_trigger = {
 		is_interest_group_type = ig_intelligentsia
 		is_interest_group_type = ig_trade_unions
 		is_interest_group_type = ig_petty_bourgeoisie
+		is_interest_group_type = ig_devout
 	}
 }
 
@@ -979,6 +968,9 @@ ideology_corporatist_leader_valid_trigger = {
 }
 
 ideology_modernizer_leader_valid_trigger = {
+}
+
+ideology_shojoi_leader_valid_trigger = {
 
 }
 
@@ -1087,8 +1079,8 @@ ideology_legitimist_valid_trigger = {
 	OR = {
 		is_interest_group_type = ig_devout
 		is_interest_group_type = ig_rural_folk
-		is_interest_group_type = ig_petty_bourgeoisie
 		is_interest_group_type = ig_landowners
+		is_interest_group_type = ig_armed_forces
 	}
 }
 

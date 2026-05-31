@@ -1,0 +1,312 @@
+GLOBAL = {
+	add_contextless_journal_entry = je_commonwealth
+	c:USA ?= {
+		add_journal_entry = { type = je_american_isolationism }
+	}
+    c:FRA ?= {
+		activate_law = law_type:law_national_militia
+	}
+    c:EGY ?= {
+		activate_law = law_type:law_national_militia
+	}
+    c:BEL ?= {
+		activate_law = law_type:law_national_militia
+	}
+    c:PRU ?= {
+		activate_law = law_type:law_national_militia
+	}
+    c:GBR ?= {
+		activate_law = law_type:law_national_militia
+	}
+    c:CHI ?= {
+        remove_primary_culture = cu:han
+    }
+	every_country = {
+		limit = {
+			OR = {
+				country_has_primary_culture = cu:australian
+				country_has_primary_culture = cu:anglo_canadian
+				country_has_primary_culture = cu:franco_canadian
+				c:SAF ?= this
+				c:FRA ?= this
+			}
+		}
+		activate_law = law_type:law_language_discrimination
+	}
+    c:BIC ?= {
+		activate_law = law_type:law_language_discrimination
+	}
+    c:DEI ?= {
+		activate_law = law_type:law_language_discrimination
+	}
+    #c:PHI ?= {
+	#	activate_law = law_type:law_language_discrimination
+	#}
+	
+	################################################
+	################## OBSESSIONS ##################
+	################################################
+	cu:south_german= {
+		add_cultural_obsession = liquor
+		add_cultural_obsession = coffee
+	}
+	cu:swedish = {
+		add_cultural_obsession = tobacco
+		add_cultural_obsession = fish
+	}
+	cu:icelandic = {
+		add_cultural_obsession = fish
+	}
+	cu:finnish = {
+		add_cultural_obsession = liquor
+	}
+	cu:basque = {
+		add_cultural_obsession = oil #idk who did this, im just porting changes that already existed in hmps files
+	}
+	cu:french = {
+		add_cultural_obsession = luxury_clothes
+	}
+	cu:turkish = {
+		add_cultural_obsession = tobacco
+	}
+	cu:persian = {
+		add_cultural_obsession = fabric
+		add_cultural_obsession = silk
+		add_cultural_obsession = luxury_furniture
+	}
+	cu:sinhala = {
+		add_cultural_obsession = tea
+	}
+	cu:vietnamese = {
+		add_cultural_obsession = coffee
+	}
+	cu:filipino = {
+		add_cultural_obsession = coffee
+	}
+	cu:thai = {
+		add_cultural_obsession = tea
+	}
+	cu:japanese = {
+		add_cultural_obsession = fish
+	}
+	cu:manchu = {
+		add_cultural_obsession = tea
+        add_cultural_obsession = opium
+	}
+	cu:inuit = {
+		add_cultural_obsession = fish
+	}
+	cu:dixie = {
+		add_cultural_obsession = tea
+	}
+	cu:central_american = {
+		add_cultural_obsession = fruit
+	}
+	cu:caribeno = {
+		add_cultural_obsession = tobacco
+	}
+	cu:north_andean = {
+		add_cultural_obsession = fruit
+	}
+	cu:afro_american = {
+		add_cultural_obsession = liquor # lowkirk seems kinda racist but idk
+	}
+	cu:malay = {
+		add_cultural_obsession = coffee
+	}
+	cu:sumatran = {
+		add_cultural_obsession = coffee
+	}
+
+	################################################
+	################## TRADITIONS ##################
+	################################################
+	cu:ashkenazi = {
+		add_tradition_trait = tradition_plc
+	}
+	cu:polish = {
+		add_tradition_trait = tradition_plc
+	}
+	cu:lithuanian = {
+		add_tradition_trait = tradition_plc
+	}
+	cu:byelorussian = {
+		add_tradition_trait = tradition_russosphere
+		add_tradition_trait = tradition_plc
+	}
+	cu:ukrainian = {
+		add_tradition_trait = tradition_russosphere
+		add_tradition_trait = tradition_plc
+	}
+	cu:latvian = {
+		add_tradition_trait = tradition_plc
+	}
+	cu:estonian = {
+		add_tradition_trait = tradition_plc
+	}
+	cu:yuanzhumin = { # native taiwan
+		add_tradition_trait = tradition_sinosphere
+	}
+	cu:yankee = {
+		add_tradition_trait = tradition_american
+	}
+	cu:dixie = {
+		add_tradition_trait = tradition_american
+	}
+	cu:afro_american = {
+		add_tradition_trait = tradition_american
+	}
+	cu:east_german = {
+		add_tradition_trait = tradition_plc
+	}
+
+	################################################
+	##################  TAX LAWS  ##################
+	################################################
+	every_country = {
+		activate_law = law_type:law_low_income_tax
+		activate_law = law_type:law_low_consumption_tax
+	}
+
+	every_country = {
+		limit = {
+			OR = {
+				this = c:GBR
+				this = c:FRA
+				this = c:PRU
+				this = c:SWI
+			}
+		}
+		activate_law = law_type:law_debtors_prisons
+	}
+    
+    c:DAI ?= {
+		activate_law = law_type:law_land_based_taxation
+	}
+    c:SIA ?= {
+		activate_law = law_type:law_land_based_taxation
+	}
+    c:BUR ?= {
+		activate_law = law_type:law_land_based_taxation
+	}
+    c:CAM ?= {
+		activate_law = law_type:law_land_based_taxation
+	}
+    
+	####################################################
+	##################  PERU-BOLIVIA  ##################
+	####################################################
+	c:BOL ?= {
+		annex_with_incorporation = c:SPU
+		annex_with_incorporation = c:NPU
+		annex_with_incorporation = c:IQU
+		annex_with_incorporation = c:PEU
+	}
+    
+    ####################################################
+	##################  Guano  #########################
+	####################################################
+    
+	s:STATE_LIMA = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 20
+		}
+	}
+	s:STATE_CAJAMARCA = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 10
+		}
+	}
+	s:STATE_FLORIDA = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 15
+		}
+	}
+    s:STATE_HAITI = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 10
+		}
+	}
+    s:STATE_SANTO_DOMINGO = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 5
+		}
+	}
+    s:STATE_BAHAMAS = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 5
+		}
+	}
+    s:STATE_WEST_INDIES = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 5
+		}
+	}
+    s:STATE_WEST_MICRONESIA = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 6
+		}
+	}
+    s:STATE_EAST_MICRONESIA = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 8
+		}
+	}
+    s:STATE_SOLOMON_ISLANDS = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 7
+		}
+	}
+    s:STATE_NAURU = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 5
+		}
+	}
+    s:STATE_FIJI = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 6
+		}
+	}
+    s:STATE_VANUATU = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 3
+		}
+	}
+    s:STATE_PUERTO_RICO = {
+		change_resource_potential = {
+			type = building_guano_mine
+			amount = 4
+		}
+	}
+	##############################################
+	##################  ALSACE  ##################
+	##############################################
+	s:STATE_ALSACE_LORRAINE = {
+		remove_homeland = cu:alemannic
+		every_state_region = {
+			every_scope_pop = {
+				limit = {
+					culture = cu:alemannic
+				}
+				change_pop_culture = {
+					target = cu:south_german
+					value = 0.5
+				}
+			}
+		}
+	}
+
+}

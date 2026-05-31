@@ -122,9 +122,6 @@
  state_mortality_mult: "Mortality Multiplier"
  state_mortality_wealth_mult: "$concept_pop_growth_mortality$ Multiplier per $concept_wealth$"
  
- state_pop_support_law_republic_add: "[GetLawType('law_republic').GetName] [concept_pop] Support"
- state_pop_support_law_republic_add_desc: "Impacts the rate at which [Concept('concept_pop', '$concept_pops$')] support the [GetLawType('law_republic').GetName] [concept_law]."
- 
  prolonged_war:0 "Prolonged War"
  
  
@@ -203,9 +200,9 @@
  state_yearly_forced_conversion_mult: "Yearly Forced Conversion Multiplier"
  state_yearly_forced_conversion_mult_desc: "$state_yearly_forced_conversion_add_desc$"
  
- state_yearly_forced_language_learning_add: "Yearly Forced Colonial Language Learning Base Rate"
- state_yearly_forced_language_learning_add_desc: "How much of a states population with different heritage will be forcefully taught your nations language per year. Currently works for all european cultures exculding the balkans when teaching to cultures with african heritage."
- state_yearly_forced_language_learning_mult: "Yearly Forced Colonial Language Learning Multiplier"
+ state_yearly_forced_language_learning_add: "Yearly Forced Language Learning Base Rate"
+ state_yearly_forced_language_learning_add_desc: "How much of a states population will be forcefully taught your nations language group per year. Is only 10% as effective in India and China.
+ state_yearly_forced_language_learning_mult: "Yearly Forced Language Learning Multiplier"
  state_yearly_forced_language_learning_mult_desc: "$state_yearly_forced_language_learning_mult_desc$"
  
  max_oil_indicator: "Total available Oil"
@@ -222,8 +219,9 @@
  
  india_state_nerf: "Indian Hyper Populous Non-Cooperation"
  #^^^ Also 5x Drought Chance
- china_state: "Integral part of China (This state will get -30% mapi and construction if owned by a forigen power. Also has 8x Flood Chance)"
+ china_state: "Integral part of China (Depending on gamerules, This state will be administed by a colonial subject if taken by a foreign power)"
  china_state_nerf: "Chinese Hyper Populous Non-Cooperation"
+ china_country_nerf: "Inward Focus"
  modifier_india_neo_imperialism_cost_reduction: "Anti-Neo-Imperialist Sentiment"
  modifier_india_neo_imperialism: "Outrage over Neo-Imperialism"
  
@@ -244,8 +242,19 @@
  
  country_amount_tooltip_add: "Amount"
  country_amount_tooltip_add_desc: "Amount of something (just exists for tooltips)"
+ 
+ country_research_effort_add: "[concept_research_effort]"
+ country_research_effort_add_desc: "You gain Innovation based on Reasearch Effort relative to incorporated population and with diminishing returns."
+ 
+ concept_research_effort:0 "Research Effort"
+ concept_research_effort_desc:4 "Gain [concept_innovation] based on total [concept_research_effort] scaled relative to incorporated population, this has diminishing returns the more research effort you have.\n\nThe first 10 [concept_innovation] costs [concept_research_effort] equal to 5 plus your incorporated population in millions, the next 10 [concept_innovation] is twice as expensive as the first 10, the next 10 [concept_innovation] after that is three times as expensive as the first 10 and so on. This is continuous, so will do not worry about threshholds. Any excess [concept_innovation] is converted to tech spread at a at a rate of 20%.\n\nExamples: if you have 20 million incorporated population then\n- 25 Total [concept_research_effort] gives 10 [concept_innovation]\n- 75 Total [concept_research_effort] gives 20 [concept_innovation]\n- 150 Total [concept_research_effort] gives 30 [concept_innovation]\n- 250 Total [concept_research_effort] gives 40 [concept_innovation]\n- 375 Total [concept_research_effort] gives 50 [concept_innovation]"
+ 
+ 
 
- AUS_czech_acceptance:0 "Czech and Slovine Acceptance"
+ modifier_demographic_workforce_ratio: "Demographic Profile (impacted by SoL)"
+ modifier_demographic_workforce_ratio_desc: "As a societies and populations develop the portion of working age adults changes" #not useded
+ 
+ modifier_country_innovation_from_research_effort: "Innovation from [concept_research_effort]"
  
  modifier_called_election_recently: "Called Election Recently"
  usa_slavery_debate_modifier: "Slavery Debate"

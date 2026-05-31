@@ -280,6 +280,9 @@
 				value = state_urbanization_rate
 				multiply = 5
 			}
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 
 		forced_tags = {
@@ -494,6 +497,7 @@ movement_german_national = {
 		movement_support_cultural_fervor
 		movement_support_high_urbanization
 		movement_support_germanic_heritage
+		movement_support_high_literacy
 		movement_support_academics
 		movement_support_clerks
 		movement_support_shopkeepers
@@ -713,7 +717,10 @@ movement_german_national = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 			if = {
 			   limit = {
 					NOT = {
@@ -739,7 +746,9 @@ movement_german_national = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 			if = {
 			   limit = {
 					NOT = {
@@ -1012,6 +1021,7 @@ movement_italian_national = {
 		movement_support_cultural_fervor
 		movement_support_high_urbanization
 		movement_support_italic_heritage
+		movement_support_high_literacy
 		movement_support_academics
 		movement_support_clerks
 		movement_support_shopkeepers
@@ -1230,7 +1240,10 @@ movement_italian_national = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 			if = {
 			   limit = {
 					NOT = {
@@ -1256,7 +1269,9 @@ movement_italian_national = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 			if = {
 			   limit = {
 					NOT = {
@@ -1512,6 +1527,7 @@ movement_yugoslav_national = {
 		movement_support_cultural_fervor
 		movement_support_high_urbanization
 		movement_support_south_slavic_heritage
+		movement_support_high_literacy
 		movement_support_academics
 		movement_support_clerks
 		movement_support_shopkeepers
@@ -1730,7 +1746,10 @@ movement_yugoslav_national = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 			if = {
 			   limit = {
 					NOT = {
@@ -1765,7 +1784,9 @@ movement_yugoslav_national = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 			if = {
 			   limit = {
 					NOT = {
@@ -1975,7 +1996,7 @@ movement_dominican_national = {
 		movement_support_national_awakening
 		movement_support_cultural_fervor
 		movement_support_high_urbanization
-		movement_support_italic_heritage
+		movement_support_high_literacy
 		movement_support_academics
 		movement_support_clerks
 		movement_support_shopkeepers

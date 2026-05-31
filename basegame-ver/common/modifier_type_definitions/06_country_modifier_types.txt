@@ -1,4 +1,16 @@
-﻿country_enactment_success_chance_law_technocracy_add={
+﻿country_general_rank_impact_mult = {
+	percent = yes
+	decimals = 0
+	color = good
+}
+
+country_admiral_rank_impact_mult = {
+	percent = yes
+	decimals = 0
+	color = good
+}
+
+country_enactment_success_chance_law_technocracy_add={
 	decimals=0
 	color=good
 	percent=yes
@@ -133,15 +145,6 @@ country_pact_leverage_generation_mult={
 	}
 }
 
-country_convoy_contribution_to_market_owner_add = {
-	decimals=0
-	color=neutral
-	percent=yes
-	game_data={
-		ai_value=0
-	}
-}
-
 country_institution_size_change_speed_institution_colonial_affairs_mult={
 	decimals=0
 	color=good
@@ -217,6 +220,15 @@ country_institution_cost_institution_health_system_mult={
 country_institution_impact_institution_health_system_mult={
 	decimals=0
 	color=good
+	percent=yes
+	game_data={
+		ai_value=0
+	}
+}
+
+country_institution_cost_institution_home_affairs_mult={
+	decimals=0
+	color=bad
 	percent=yes
 	game_data={
 		ai_value=0
@@ -874,4 +886,10 @@ country_financial_districts_buy_farms_likelihood = {
 	percent = yes
 	decimals = 0
 	color = good
+}
+
+country_navy_goods_cost_mult = {
+	decimals=0
+	percent=yes
+	color=bad
 }

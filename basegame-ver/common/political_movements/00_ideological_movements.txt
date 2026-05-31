@@ -351,6 +351,7 @@
 
 		state_weight = {
 			value = 1
+			add = scope:clout
 			if = {
 			   limit = {
 					is_slave_state = yes
@@ -446,6 +447,7 @@
 
 		state_weight = {
 			value = 1
+			add = scope:clout
 			if = {
 			   limit = {
 					is_slave_state = yes
@@ -502,7 +504,7 @@
 								has_ideology = ideology:ideology_utilitarian_leader
 								has_ideology = ideology:ideology_utopian
 							}
-							interest_group = {
+							interest_group ?= {
 								OR = {
 									has_ideology = ideology:ideology_pro_slavery
 									has_ideology = ideology:ideology_pro_slavery_colonial
@@ -773,6 +775,7 @@ movement_pro_slavery = {
 
 		state_weight = {
 			value = 1
+			add = scope:clout
 			if = {
 			   limit = {
 					is_slave_state = no
@@ -866,6 +869,7 @@ movement_pro_slavery = {
 
 		state_weight = {
 			value = 1
+			add = scope:clout
 			if = {
 			   limit = {
 					is_slave_state = no
@@ -935,7 +939,7 @@ movement_pro_slavery = {
 								has_ideology = ideology:ideology_slaver
 								has_ideology = ideology:ideology_jacksonian_democrat
 							}
-							interest_group = { has_ideology = ideology:ideology_anti_slavery }
+							interest_group ?= { has_ideology = ideology:ideology_anti_slavery }
 						}
 					}
 				}
@@ -997,7 +1001,7 @@ movement_pro_slavery = {
 				owner = {
 					every_scope_building = {
 						limit = {
-							is_building_type = building_naval_base
+							is_building_type = building_naval_administration
 							state = { is_slave_state = yes }
 						}
 						add = this.level
@@ -1074,6 +1078,7 @@ movement_royalist_absolutist = {
 					is_political_movement_type = movement_miguelist
 				}
 			}
+			has_law = law_type:law_bakufu
 		}
 	}
 	on_disbanded = {
@@ -1114,6 +1119,13 @@ movement_royalist_absolutist = {
 			}
 		}
 		NOT = { c:FRA ?= this }
+		NOR = { 
+			has_law = law_type:law_bakufu 
+			AND = {
+				c:JAP ?= this
+				NOT = { has_variable = japan_restoration_complete }
+			}
+		}
 	}
 	creation_weight = {
 		value = 100
@@ -1377,6 +1389,7 @@ movement_royalist_absolutist = {
 
 		state_weight = {
 			value = 1
+			add = scope:clout
 
 			subtract = state_urbanization_rate
 
@@ -1508,6 +1521,10 @@ movement_royalist_constitutional = {
 			}
 		}
 		NOT = { c:FRA ?= this }
+		NAND = {
+			c:JAP ?= this
+			NOT = { has_variable = japan_restoration_complete }
+		}
 	}
 	creation_weight = {
 		value = 100
@@ -1758,6 +1775,7 @@ movement_royalist_constitutional = {
 
 		state_weight = {
 			value = 1
+			add = scope:clout
 
 			subtract = {
 				value = state_urbanization_rate
@@ -2189,6 +2207,9 @@ movement_labor = { # Explicitly non-socialist labour movement
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -2204,6 +2225,8 @@ movement_labor = { # Explicitly non-socialist labour movement
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -2583,6 +2606,9 @@ movement_socialist = {
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 
 			if = {
 				limit = { is_capital = yes }
@@ -2609,6 +2635,8 @@ movement_socialist = {
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 
 			if = {
 				limit = { is_capital = yes }
@@ -2951,7 +2979,7 @@ movement_anarchist = {
 				limit = {
 					owner = {
 						NOR = {
-							has_law_or_variant = law_type:law_homesteading
+							has_law_or_variant = law_type:law_peasant_proprietorship
 							has_law_or_variant = law_type:law_collectivized_agriculture
 						}
 					}
@@ -3026,9 +3054,11 @@ movement_anarchist = {
 			OR = {
 				scope:clout <= 0
 				trigger_if = {
-					NOT = {
-						owner = {
-							has_journal_entry = je_spanish_anarchism # So the Spanish anarchists will always launch a revolution if possible
+					limit = {
+						NOT = {
+							owner = {
+								has_journal_entry = je_spanish_anarchism # So the Spanish anarchists will always launch a revolution if possible
+							}
 						}
 					}
 					AND = {
@@ -3968,7 +3998,10 @@ movement_fascist = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -4374,7 +4407,10 @@ movement_corporatist = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -4475,6 +4511,16 @@ movement_liberal = {
 				value = 2
 			}
 		}
+		if = {
+			limit = {
+				c:JAP ?= this
+				has_law = law_type:law_bakufu
+				country_has_pending_meiji_restoration = yes
+			}
+			multiply = {
+				value = 0.01
+			}
+		}
 	}
 	on_created = {
 		add_movement_enthusiasm_modifier = yes
@@ -4489,25 +4535,25 @@ movement_liberal = {
 	}
 
 	character_support_trigger = {
-			OR = {
-				has_ideology = ideology:ideology_market_liberal
-				has_ideology = ideology:ideology_liberal_leader
-				has_ideology = ideology:ideology_republican_leader
-				has_ideology = ideology:ideology_radical
-				has_ideology = ideology:ideology_humanitarian
-				has_ideology = ideology:ideology_humanitarian_royalist
-				has_ideology = ideology:ideology_reformer
-				has_ideology = ideology:ideology_utopian
-				has_ideology = ideology:ideology_modernizer_leader
-				has_ideology = ideology:ideology_positivist
-			scope:interest_group ?= {
-			OR = {
-						has_ideology = ideology:ideology_liberal
-						has_ideology = ideology:ideology_liberal_modern
-					}
+		OR = {
+			has_ideology = ideology:ideology_market_liberal
+			has_ideology = ideology:ideology_liberal_leader
+			has_ideology = ideology:ideology_republican_leader
+			has_ideology = ideology:ideology_radical
+			has_ideology = ideology:ideology_humanitarian
+			has_ideology = ideology:ideology_humanitarian_royalist
+			has_ideology = ideology:ideology_reformer
+			has_ideology = ideology:ideology_utopian
+			has_ideology = ideology:ideology_modernizer_leader
+			has_ideology = ideology:ideology_positivist
+		scope:interest_group ?= {
+		OR = {
+					has_ideology = ideology:ideology_liberal
+					has_ideology = ideology:ideology_liberal_modern
 				}
 			}
 		}
+	}
 	character_support_weight = {
 		value = 200
 		if = {
@@ -4767,6 +4813,9 @@ movement_liberal = {
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -4782,6 +4831,8 @@ movement_liberal = {
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -4898,6 +4949,14 @@ movement_radical = {
 				}
 				any_political_movement = {
 					is_political_movement_type = movement_italian_national
+				}
+			}
+			AND = {
+				c:JAP ?= this
+				has_law = law_type:law_bakufu
+				country_has_pending_meiji_restoration = yes
+				any_political_movement = {
+					is_political_movement_type = movement_meiji_restorationist
 				}
 			}
 		}
@@ -5219,8 +5278,11 @@ movement_radical = {
 			value = 100
 		}
 
-		state_weight = {
+		state_weight = { # State urbanisation rate + clout + 0.5*turmoil - loyalists
 			value = state_urbanization_rate
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -5236,6 +5298,8 @@ movement_radical = {
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -5281,7 +5345,7 @@ movement_radical = {
 					}
 				}
 				add = {
-					value = 0.20
+					value = 0.15
 					desc = "NO_UNIVERSAL_SUFFRAGE"
 				}
 			}
@@ -5566,6 +5630,9 @@ movement_nihilist = {
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -5581,6 +5648,8 @@ movement_nihilist = {
 
 		state_weight = {
 			value = state_urbanization_rate
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 }
@@ -5951,7 +6020,10 @@ movement_positivist = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.25
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -6005,7 +6077,7 @@ movement_land_reform = {
 	creation_trigger = {
 		has_technology_researched = enclosure
 		NOR = {
-			has_law_or_variant = law_type:law_homesteading
+			has_law_or_variant = law_type:law_peasant_proprietorship
 			has_law_or_variant = law_type:law_collectivized_agriculture
 		}
 		pop_type_percent_country = {
@@ -6253,8 +6325,8 @@ movement_land_reform = {
 		}
 
 		state_weight = {
-			value = 1.5
-
+			value = 1
+			add = scope:clout
 			subtract = state_urbanization_rate
 		}
 	}
@@ -6273,7 +6345,7 @@ movement_land_reform = {
 							any_interest_group = {
 								is_in_government = yes
 								law_stance = {
-									law = law_type:law_homesteading
+									law = law_type:law_peasant_proprietorship
 									value > neutral
 								}
 							}
@@ -6289,7 +6361,6 @@ movement_land_reform = {
 
 		state_weight = {
 			value = 1.5
-
 			subtract = state_urbanization_rate
 		}
 	}
@@ -6547,7 +6618,8 @@ movement_feminist = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.5
+			add = scope:clout
 		}
 	}
 
@@ -6922,7 +6994,8 @@ movement_reactionary = {
 		}
 
 		state_weight = {
-			value = 1
+			value = 0.5
+			add = scope:clout
 		}
 	}
 
@@ -6986,6 +7059,17 @@ movement_modernizer = { # This movement loves you and wants you to succeed. It e
 			ig_counts_as_marginal = no
 		}
 		country_has_laws_in_need_of_critical_modernization = yes
+		NAND = {
+			c:JAP ?= this
+			NOR = {
+				has_variable = monarchy_stamped_out_var
+				has_variable = japan_restoration_complete
+			}
+		}
+		NAND = {
+			c:BIC ?= this
+			is_involved_in_journal_entry = je_uneasy_raj
+		}
 	}
 
 	creation_weight = {
@@ -7025,7 +7109,16 @@ movement_modernizer = { # This movement loves you and wants you to succeed. It e
 	}
 
 	disband_trigger = {
-		country_has_laws_in_need_of_modernization = no # The crisis is past
+		OR = {
+			country_has_laws_in_need_of_modernization = no # The crisis is past
+			AND = { # Just in case
+				c:JAP ?= this
+				NOR = {
+					has_variable = monarchy_stamped_out_var
+					has_variable = japan_restoration_complete
+				}
+			}
+		}
 	}
 
 	character_support_trigger = {
@@ -7311,6 +7404,12 @@ movement_modernizer = { # This movement loves you and wants you to succeed. It e
 			}
 		}
 
+		multiply = { # Minority pops are substantially less likely to help modernise a horrific ethnostate
+			value = 0.011
+			multiply = pop_acceptance
+			desc = "ACCEPTANCE"
+		}
+
 		multiply = { # Illiterate pops participate at 1/10 the rate of fully literate pops
 			desc = "POP_LITERACY"
 			value = literacy_rate
@@ -7337,7 +7436,10 @@ movement_modernizer = { # This movement loves you and wants you to succeed. It e
 		}
 
 		state_weight = {
-			value = 1
+			value = state_urbanization_rate
+			add = scope:clout
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 
@@ -7349,6 +7451,12 @@ movement_modernizer = { # This movement loves you and wants you to succeed. It e
 
 		weight = {
 			value = 1000
+		}
+
+		state_weight = {
+			value = state_urbanization_rate
+			add = { value = this.turmoil divide = 2 }
+			subtract = this.loyalists
 		}
 	}
 

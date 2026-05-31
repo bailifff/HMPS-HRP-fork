@@ -26,8 +26,10 @@ coup_pulse_events.1 = {
 
 	trigger = {
 		any_scope_character = {
-			has_role = general
-			is_ruler = no
+			has_role_of_type = general
+			is_ruler_of_own_country = no
+			is_heir_of_own_country = no
+			character_is_valid_for_events = yes
 			NOT = {
 				has_variable = golpista_var
 			}
@@ -37,14 +39,16 @@ coup_pulse_events.1 = {
 	immediate = {
 		random_scope_character = {
 			limit = {
-				has_role = general
-				is_ruler = no
+				has_role_of_type = general
+				is_ruler_of_own_country = no
+				is_heir_of_own_country = no
+				character_is_valid_for_events = yes
 				NOT = {
 					has_variable = golpista_var
 				}
 			}
 			save_scope_as = accused_general
-			interest_group = {
+			interest_group ?= {
 				save_scope_as = accused_general_ig
 			}
 		}
@@ -72,9 +76,7 @@ coup_pulse_events.1 = {
 		custom_tooltip = {
 			text = coup_pulse_events.1.a.tt
 			scope:accused_general = {
-				kill_character = {
-					hidden = yes
-				}
+				remove_character_role = character_role_general
 			}
 		}
 		if = {
@@ -104,7 +106,7 @@ coup_pulse_events.1 = {
 		if = {
 			limit = {
 				scope:accused_general = {
-					interest_group = {
+					interest_group ?= {
 						is_same_interest_group_type = scope:golpista_ig
 					}
 				}
@@ -964,7 +966,7 @@ coup_aftermath_events.1 = {
 		}
 		random_scope_character = {
 			limit = {
-				is_ruler = yes
+				is_ruler_of_own_country = yes
 			}
 			save_scope_as = coup_leader
 		}
@@ -1059,7 +1061,7 @@ coup_aftermath_events.2 = {
 		}
 		random_scope_character = {
 			limit = {
-				is_ruler = yes
+				is_ruler_of_own_country = yes
 			}
 			save_scope_as = coup_leader
 		}
@@ -1168,7 +1170,7 @@ coup_aftermath_events.3 = {
 		}
 		random_scope_character = {
 			limit = {
-				is_ruler = yes
+				is_ruler_of_own_country = yes
 			}
 			save_scope_as = coup_leader
 		}
@@ -1250,7 +1252,7 @@ coup_aftermath_events.4 = {
 		}
 		random_scope_character = {
 			limit = {
-				is_ruler = yes
+				is_ruler_of_own_country = yes
 			}
 			save_scope_as = coup_leader
 		}

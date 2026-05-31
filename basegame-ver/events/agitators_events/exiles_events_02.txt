@@ -377,7 +377,7 @@ exiles_more_events.3 = {
 
 	trigger = {
 		any_scope_character = {
-			has_role = agitator
+			has_role_of_type = agitator
 			character_supports_political_movement = yes
 			political_movement ?= {
 				political_movement_support < 0.1
@@ -388,14 +388,14 @@ exiles_more_events.3 = {
 	immediate = {
 		random_scope_character = {
 			limit = {
-				has_role = agitator
+				has_role_of_type = agitator
 				character_supports_political_movement = yes
 				political_movement ?= {
 					political_movement_support < 0.1
 				}
 			}
 			save_scope_as = the_loneliest_little_agitator
-			interest_group = {
+			interest_group ?= {
 				save_scope_as = the_loneliest_little_agitator_ig
 			}
 		}
@@ -415,14 +415,20 @@ exiles_more_events.3 = {
 	option = {
 		name = exiles_more_events.3.a
 		default_option = yes
+		ai_chance = {
+			base = 10
+		}
 
 		scope:the_loneliest_little_agitator = {
-			exile_character = yes
+			exile_character_with_role_cleanup = yes
 		}
 	}
 
 	option = { # Perhaps it's time for a little study and reflection?
 		name = exiles_more_events.3.b
+		ai_chance = {
+			base = 10
+		}
 		highlighted_option = yes
 
 		trigger = {
@@ -441,6 +447,25 @@ exiles_more_events.3 = {
 
 	option = { # time for something radical
 		name = exiles_more_events.3.c
+		ai_chance = {
+			base = 10
+			modifier = {
+				trigger = {
+					scope:the_loneliest_little_agitator.political_movement ?= {
+						political_movement_radicalism >= 0.60
+					}
+				}
+				add = -5
+			}
+			modifier = {
+				trigger = {
+					any_political_movement = {
+						political_movement_radicalism >= 0.25
+					}
+				}
+				add = -3
+			}
+		}
 		highlighted_option = yes
 
 		trigger = {
@@ -486,6 +511,9 @@ exiles_more_events.3 = {
 
 	option = { # There's no need for anything drastic like exile!
 		name = exiles_more_events.3.dd
+		ai_chance = {
+			base = 10
+		}
 		highlighted_option = yes
 
 		trigger = {
@@ -892,7 +920,7 @@ exiles_more_events.5 = {
 		default_option = yes
 
 		scope:experienced_exile = {
-			exile_character = yes
+			exile_character_with_role_cleanup = yes
 		}
 	}
 
@@ -1225,7 +1253,7 @@ exiles_more_events.7 = {
 		name = exiles_more_events.7.b
 		trigger = {
 			scope:first_ex_exile = {
-				is_ruler = no
+				is_ruler_of_own_country = no
 			}
 		}
 		scope:first_ex_exile = {
@@ -1237,7 +1265,7 @@ exiles_more_events.7 = {
 		name = exiles_more_events.7.c
 		trigger = {
 			scope:second_ex_exile = {
-				is_ruler = no
+				is_ruler_of_own_country = no
 			}
 		}
 		scope:second_ex_exile = {
@@ -1498,8 +1526,8 @@ exiles_more_events.10 = {
 	trigger = {
 		any_revolution_ongoing = yes
 		any_scope_character = {
-			has_role = agitator
-			interest_group = { # Loyal, but in opposition
+			has_role_of_type = agitator
+			interest_group ?= { # Loyal, but in opposition
 				is_insurrectionary = no
 				is_in_government = no
 			}
@@ -1509,14 +1537,14 @@ exiles_more_events.10 = {
 	immediate = {
 		random_scope_character = {
 			limit = {
-				has_role = agitator
-				interest_group = {
+				has_role_of_type = agitator
+				interest_group ?= {
 					is_insurrectionary = no
 					is_in_government = no
 				}
 			}
 			save_scope_as = unstable_element_agitator
-			interest_group = {
+			interest_group ?= {
 				save_scope_as = unstable_element_ig
 			}
 		}

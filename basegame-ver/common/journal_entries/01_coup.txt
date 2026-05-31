@@ -17,6 +17,31 @@
 				has_variable = golpista_var
 			}
 			save_scope_as = golpista_general
+			ROOT = {
+				set_variable = { name = coup_loc_char_var value = PREV }
+			}
+		}
+		if = { # Exists in case 1
+			limit = {
+				exists = currently_enacting_law
+			}
+			currently_enacting_law = {
+				save_scope_as = current_law_scope
+				ROOT = {
+					set_variable = { name = coup_loc_law_var value = PREV }
+				}
+			}
+		}
+		random_political_lobby = {
+			limit = {
+				has_variable = coup_lobby
+			}
+			target = {
+				save_scope_as = coup_lobby_country
+				ROOT = {
+					set_variable = { name = coup_loc_lobby_country_var value = PREV }
+				}
+			}
 		}
 		change_global_variable = { name = num_coups add = 1 }
 	}
@@ -58,7 +83,6 @@
 			custom_tooltip = if_coup_is_successful_tt
 			ip4_coup_victory_effect = yes
 		}
-		set_variable = { name = coup_cooldown_var days = short_modifier_time }
 	}
 
 	fail = {
@@ -77,15 +101,6 @@
 	}
 
 	on_fail = {
-		scope:golpista_general ?= {
-			remove_variable = golpista_var
-		}
-		random_interest_group = {
-			limit = {
-				has_variable = golpista_ig_var
-			}
-			remove_variable = golpista_ig_var
-		}
 		if = {
 			limit = {
 				scope:golpista_general ?= {
@@ -95,20 +110,13 @@
 			}
 			trigger_event = { id = ip4_coup.3 popup = yes }
 		}
+		else = {
+			ip4_coup_cleanup_effects = yes
+		}
 		change_global_variable = { name = failed_coups add = 1 }
-		set_variable = { name = coup_cooldown_var days = short_modifier_time }
 	}
 
 	on_timeout = {
-		scope:golpista_general ?= {
-			remove_variable = golpista_var
-		}
-		random_interest_group = {
-			limit = {
-				has_variable = golpista_ig_var
-			}
-			remove_variable = golpista_ig_var
-		}
 		if = {
 			limit = {
 				scope:golpista_general ?= {
@@ -119,7 +127,6 @@
 			trigger_event = { id = ip4_coup.3 popup = yes }
 		}
 		change_global_variable = { name = failed_coups add = 1 }
-		set_variable = { name = coup_cooldown_var days = short_modifier_time }
 	}
 
 	invalid = {
@@ -130,18 +137,21 @@
 			scope:golpista_ig ?= {
 				is_secessionist = yes
 			}
+			NOT = { exists = scope:golpista_ig }
+			NOT = { exists = scope:golpista_general }
 		}
 	}
 
 	on_invalid = {
-		set_variable = { name = coup_cooldown_var days = short_modifier_time }
+		ip4_coup_cleanup_effects = yes
 	}
 
 	status_desc = {
 
 	}
 
-	should_be_pinned_by_default = yes
+		
+    should_be_pinned_by_default_uninvolved_or_context = yes
 
 	transferable = no
 	can_revolution_inherit = no

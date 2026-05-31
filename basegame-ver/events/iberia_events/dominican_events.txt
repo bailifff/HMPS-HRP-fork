@@ -41,6 +41,17 @@ dominican_events.1 = {
 	option = {
 		name = dominican_events.1.a
 		default_option = yes
+		ai_chance = {
+			base = 10
+			modifier = {
+				trigger = {
+					scope:dominican_movement ?= {
+						political_movement_radicalism >= 0.20
+					}
+				}
+				add = -5
+			}
+		}
 		scope:dominican_movement = {
 			add_modifier = {
 				name = modifier_birth_of_the_liberation_army
@@ -72,6 +83,17 @@ dominican_events.1 = {
 
 	option = {
 		name = dominican_events.1.b
+		ai_chance = {
+			base = 10
+			modifier = {
+				trigger = {
+					scope:dominican_movement ?= {
+						political_movement_radicalism >= 0.20
+					}
+				}
+				add = -5
+			}
+		}
 		scope:dominican_movement = {
 			add_modifier = {
 				name = modifier_birth_of_the_liberation_army
@@ -144,7 +166,7 @@ dominican_events.2 = {
 	immediate = {
 		every_scope_state = {
 			limit = {
-				region = sr:region_caribbean
+				region = sr:region_central_america
 			}
 			assign_state_name_region_caribbean = yes
 		}
@@ -370,9 +392,9 @@ dominican_events.4 = {
 			}
 		}
 		c:SPA ?= {
-			trigger_event = { 
+			trigger_event = {
 				id = dominican_events.5
-				popup = yes 
+				popup = yes
 			}
 		}
 		custom_tooltip = if_they_accept_tt
@@ -429,9 +451,9 @@ dominican_events.4 = {
 			}
 		}
 		c:FRA ?= {
-			trigger_event = { 
+			trigger_event = {
 				id = dominican_events.5
-				popup = yes 
+				popup = yes
 			}
 		}
 		custom_tooltip = if_they_accept_tt
@@ -484,9 +506,9 @@ dominican_events.4 = {
 			}
 		}
 		c:USA ?= {
-			trigger_event = { 
+			trigger_event = {
 				id = dominican_events.5
-				popup = yes 
+				popup = yes
 			}
 		}
 		custom_tooltip = if_they_accept_tt
@@ -726,7 +748,7 @@ dominican_events.5 = {
 							 	state = scope:samana_scope
 							 	population_ratio = 0.9
 							}
-						}						
+						}
 					}
 				}
 			}

@@ -2,7 +2,7 @@
   "name" : "PDXRP Heavy Roleplay HMPS",
   "id" : "PDXRPHMPS",
   "version" : "1.4",
-  "supported_game_version" : "1.12.*",
+  "supported_game_version" : "1.13.*",
   "short_description" : "PDXRP HMPS",
   "tags" : [
 		"Gameplay",
@@ -12,9 +12,6 @@
   "game_custom_data" : {
     "multiplayer_synchronized" : true,
 		"replace_paths" : [
-			"common/laws",
-			"events/agitators_events/luddite_law_events.txt",
-			"common/history/countries/atb - athabaska.txt"
 		]
   }
 }

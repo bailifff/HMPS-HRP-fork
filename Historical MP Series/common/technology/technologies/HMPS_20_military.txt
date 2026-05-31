@@ -1,0 +1,258 @@
+### ERA 1
+INJECT:mandatory_service = {
+	modifier = {
+		state_conscription_rate_mult = -0.1
+		country_general_rank_impact_mult = 0.05
+	}
+}
+
+REPLACE:napoleonic_warfare = {
+	# Unlocks Mobile Artillery PM in Barracks
+	era = era_1
+	texture = "gfx/interface/icons/invention_icons/napoleonic_warfare.dds"
+	category = military
+	
+	unlocking_technologies = {
+		line_infantry
+		artillery
+	}
+	
+	ai_weight = {
+		value = 1.5 # Important tech in general
+		
+		if = {
+			limit = { has_journal_entry = je_sick_man_army }
+			add = 5
+		}
+	}
+}
+
+INJECT:army_reserves = {
+	modifier = {
+		state_conscription_rate_mult = -0.1
+		country_general_rank_impact_mult = 0.05
+	}
+}
+
+### ERA 2
+INJECT:logistics = {
+	modifier = {
+		state_conscription_rate_mult = -0.1
+		country_general_rank_impact_mult = 0.05
+	}
+}
+
+### ERA 3
+INJECT:enlistment_offices = {
+	modifier = {
+		state_conscription_rate_mult = -0.1
+		country_general_rank_impact_mult = 0.05
+	}
+
+	on_researched = {
+		custom_tooltip = {
+			text = expand_conscription_button
+		}
+	}
+}
+
+INJECT:floating_harbor = {
+	modifier = {
+		state_market_access_price_impact = 0.025
+	}
+}
+
+### ERA 4
+INJECT:war_propaganda = {
+	modifier = {
+		state_conscription_rate_mult = -0.1
+	}
+
+	on_researched = {
+		custom_tooltip = {
+			text = boost_war_support_button_2
+		}
+	}
+}
+
+INJECT:wargaming = {
+	modifier = {
+		country_institution_army_model_max_investment_add = 1
+		country_general_rank_impact_mult = 0.05
+	}
+}
+
+INJECT:defense_in_depth = {
+	modifier = {
+		unit_morale_loss_mult = -0.05
+	}
+}
+
+INJECT:concrete_dockyards = {
+	modifier = {
+		state_market_access_price_impact = 0.025
+	}
+}
+
+### ERA 5
+REPLACE:landing_craft = {
+	era = era_5
+	texture = "gfx/interface/icons/invention_icons/landing_craft.dds"
+	category = military
+	
+	unlocking_technologies = {	
+		sea_lane_strategies
+		destroyer
+	}
+	
+	ai_weight = {
+		value = 1
+		
+		# Important for naval powers
+		if = {
+			limit = { navy_size >= 20 }
+			add = 1
+		}			
+	}
+}
+
+INJECT:nco_training = {
+	modifier = {
+		country_general_rank_impact_mult = 0.05
+	}
+}
+
+INJECT:military_aviation = {
+	modifier = {
+		unit_army_defense_mult = 0.1
+	}
+}
+
+REPLACE:dreadnought_tech = {
+	# Unlocks Dreadnoughts PM in Naval Bases
+	era = era_5
+	texture = "gfx/interface/icons/invention_icons/dreadnought.dds"
+	category = military
+
+	modifier = {
+		# increased coal consumption
+		# increased offense and defense?
+
+		# prestige bonus? Or a prestige bonus to overall naval size. Could apply this to mahanian_thought instead.
+	}
+
+	unlocking_technologies = {
+		pre_dreadnought_tech
+		sea_lane_strategies
+		concrete_dockyards
+	}
+
+	ai_weight = {
+		value = 1
+
+		# Important for naval powers
+		if = {
+			limit = { navy_size >= 20 }
+			add = 0.5
+		}
+	}
+}
+
+REPLACE:battlefleet_tactics = {
+	# Unlocks Battlefleet Tactics PM in Naval Bases
+	era = era_5
+	texture = "gfx/interface/icons/invention_icons/battlefleet_tactics.dds"
+	category = military
+	
+	modifier = {
+		#state_building_naval_administration_max_level_add = 2
+		country_admiral_rank_impact_mult = 0.25
+	}
+	
+	unlocking_technologies = {
+		#dreadnought_tech #HMPS Change from battleship_tech
+		sea_lane_strategies
+	}
+	
+	ai_weight = {
+		value = 1
+	}
+}
+
+### ERA 6
+
+REPLACE:battleship_tech = {
+	# Unlocks Battleships PM in Naval Bases
+	era = era_6
+	texture = "gfx/interface/icons/invention_icons/battleship_tech.dds"
+	category = military
+	
+	unlocking_technologies = {	
+		battlefleet_tactics
+	}
+	
+	ai_weight = {
+		value = 1
+		
+		# Important for naval powers
+		if = {
+			limit = { navy_size >= 20 }
+			add = 0.5
+		}			
+	}
+}
+
+
+REPLACE:mobile_armor = {
+	# Unlocks Tanks PM in Vehicles Industries
+	# Unlocks Tanks, Planes and Tanks PM in Barracks
+	era = era_6
+	texture = "gfx/interface/icons/invention_icons/mobile_armor.dds"
+	category = military
+	
+	unlocking_technologies = {	
+		military_aviation
+	}
+	
+	ai_weight = {
+		value = 1.5 # Important tech in general
+	}
+}
+
+REPLACE:chemical_warfare = {
+	# Unlocks Chemical Artillery PM in Barracks
+	era = era_6
+	texture = "gfx/interface/icons/invention_icons/chemical_warfare.dds"
+	category = military
+	
+	unlocking_technologies = {	
+		flamethrowers
+	}
+	
+	ai_weight = {
+		value = 1
+	}
+}
+
+REPLACE:stormtroopers = {
+	# Unlocks Infiltrators PM in Barracks
+	era = era_6
+	texture = "gfx/interface/icons/invention_icons/stormtroopers.dds"
+	category = military
+	
+	modifier = {
+		unit_kill_rate_add = 0.05
+		unit_combat_unit_type_trench_infantry_offense_add = 5
+		unit_combat_unit_type_squad_infantry_offense_add = 5
+		unit_combat_unit_type_mechanized_infantry_offense_add = 5
+		unit_morale_loss_mult = -0.05
+	}
+	unlocking_technologies = {	
+		nco_training
+		flamethrowers
+	}
+	
+	ai_weight = {
+		value = 1
+	}
+}
