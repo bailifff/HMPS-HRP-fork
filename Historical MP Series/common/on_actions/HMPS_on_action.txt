@@ -34,7 +34,6 @@ on_monthly_pulse_country = {
 		#dp_modifiers.2
 		#dp_modifiers.3
 		grants.3
-		Britain_India_Transfer.1
 		austria_monarchy.3
 		austria_monarchy.4
 		#potato_blight.5 # Irish potato event
@@ -1168,19 +1167,19 @@ HMPS_handle_demographic_shifts = {
 	effect = {
 		if = {
 			limit = {
-				has_modifier = modifier_demographic_workforce_ratio
+				has_modifier = modifier_hmps_demographic_workforce_ratio
 			}
-			remove_modifier = modifier_demographic_workforce_ratio
+			remove_modifier = modifier_hmps_demographic_workforce_ratio
 		}
 		if = {
 			limit = {
 				average_sol >= 15
 			}
 			add_modifier = {
-				name = modifier_demographic_workforce_ratio
+				name = modifier_hmps_demographic_workforce_ratio
 				multiplier = {
 					add = average_sol
-					subtract = 15 #When does does increase start
+					subtract = 15 #When does increase start
 					multiply = 5 #What is Cap WFR?
 					divide = 10 #How much more SoL to hit Cap?
 					#min = 0
@@ -1194,29 +1193,46 @@ HMPS_handle_demographic_shifts = {
 
 HMPS_russian_poland_release_effect = {
 	effect = {
-		### Poland has historical government structure on game start #HMPS
 		if = {
 			limit = {
 				ROOT ?= c:RUS
 				scope:target ?= {
 					country_has_primary_culture = cu:polish
-					country_has_voting_franchise = no
 				}
 			}
-			scope:target ?= {
-				activate_law = law_type:law_wealth_voting
-			}
-		}
-		#always grant freedom of conscience to Poland
-		if = {
-			limit = {
-				ROOT ?= c:RUS
+			
+			### Poland has historical government structure on game start #HMPS
+			if = {
+				limit = {
+					scope:target ?= {
+						country_has_voting_franchise = no
+					}
+				}
 				scope:target ?= {
-					country_has_primary_culture = cu:polish
+					activate_law = law_type:law_wealth_voting
 				}
 			}
 			scope:target ?= {
 				activate_law = law_type:law_freedom_of_conscience
+			}
+			#THERE IS A WHOLESOME DYNAMIC NAME IF POLAND IS PERSONAL UNION
+			if = {
+				limit = {
+					scope:target = {
+						is_subject_of = c:RUS
+						country_has_monarchy_law = yes
+					}
+					c:RUS = {
+						country_has_monarchy_law = yes
+					}
+				}
+				#make_independent = yes
+				c:RUS = {
+					create_diplomatic_pact = {
+						country = scope:target
+						type = personal_union
+					}
+				}
 			}
 		}
 	}

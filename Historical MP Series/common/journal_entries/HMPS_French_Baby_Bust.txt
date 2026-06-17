@@ -1,5 +1,5 @@
 ﻿je_hmps_french_baby_bust = {
-	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+	icon = "gfx/interface/icons/invention_icons/unused/secularism.dds"
 	
 	group = je_group_historical_content
 	
@@ -22,6 +22,11 @@
 					NOT = { state_region = s:STATE_BRITTANY }
 				}
 				add_modifier = modifier_hmps_french_baby_bust
+				add_modifier = {
+					name = modifier_hmps_french_baby_bust_early_game_fix			
+					is_decaying = yes
+					years = 30
+				}
 			}
 		}
 		set_variable = {
@@ -91,9 +96,6 @@
 					has_law_or_variant = law_type:law_state_religion
 					has_law_or_variant = law_type:law_charitable_health_system 
 					has_law_or_variant = law_type:law_religious_schools 
-#					NOR = {
-#						has_consumption_tax = g:liquor
-#					}
 				}
 				
 				if = {
@@ -120,7 +122,42 @@
 					}
 					change_variable = {
 						name = hmps_french_baby_bust_progress_cached_weekly_progress_rate
-						add = 1
+						add = 1.5
+					}
+				}
+				if = {
+					limit = {
+						has_law_or_variant = law_type:law_low_income_tax
+					}
+					change_variable = {
+						name = hmps_french_baby_bust_progress_cached_weekly_progress_rate
+						add = 0.5
+					}
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_scope_state = {
+								has_decree = decree_additional_taxes
+							}
+						}
+					}
+					change_variable = {
+						name = hmps_french_baby_bust_progress_cached_weekly_progress_rate
+						add = 0.5
+					}
+				}
+				if = {
+					limit = {
+						NOR = {
+							has_consumption_tax = g:grain
+							has_consumption_tax = g:clothes
+							has_consumption_tax = g:wine
+						}
+					}
+					change_variable = {
+						name = hmps_french_baby_bust_progress_cached_weekly_progress_rate
+						add = 0.5
 					}
 				}
 				if = {
